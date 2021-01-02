@@ -1,36 +1,39 @@
 package pl.dkiszka.rentalapplication.domain.apartment;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import pl.dkiszka.rentalapplication.app.apartment.dto.ApartmentDto;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.List;
-
-import static java.util.stream.Collectors.toList;
 
 /**
  * @author Dominik Kiszka {dominikk19}
  * @project rental-application
  * @date 22.12.2020
  */
-@RequiredArgsConstructor
+@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter
+@Entity
 public class Apartment {
+    @Id
+    @GeneratedValue
+    private String id;
     private final String ownerId;
+    @Embedded
     private final Address address;
+
+    @OneToMany
     private final List<Room> rooms;
     private String description;
 
-    public static Apartment fromTo(String ownerId, ApartmentDto apartment) {
-        var address = Address.fromDto(apartment.getAddress());
-        var rooms= apartment.getRooms()
-                .stream()
-                .map(Room::fromDto)
-                .collect(toList());
-        return new Apartment(ownerId, address, rooms);
-    }
 
-    public void addDescription(String description){
+
+    void addDescription(String description){
         this.description = description;
     }
 
