@@ -17,8 +17,7 @@ import javax.persistence.Embeddable;
 class SqlAddress {
 
     static SqlAddress fromAddress(Address address) {
-        return new SqlAddress(address.getId(),
-                address.getCountry(),
+        return new SqlAddress(address.getCountry(),
                 address.getCity(),
                 address.getStreet(),
                 address.getPostalCode(),
@@ -26,7 +25,6 @@ class SqlAddress {
                 address.getApartmentNumber());
     }
 
-    private String id;
     private String country;
     private String city;
     private String street;
@@ -37,7 +35,6 @@ class SqlAddress {
 
     Address toAddress(){
         return Address.builder()
-                .id(id)
                 .country(country)
                 .city(city)
                 .street(street)

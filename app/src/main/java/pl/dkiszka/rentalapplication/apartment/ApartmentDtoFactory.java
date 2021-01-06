@@ -24,13 +24,12 @@ class ApartmentDtoFactory {
 
     }
 
-    static RoomDto fromRoom(Room room) {
+    private static RoomDto fromRoom(Room room) {
         return new RoomDto(room.getId(), room.getName(), room.getSize().getSize());
     }
 
-    static AddressDto fromAddress(Address address) {
+    private static AddressDto fromAddress(Address address) {
         return AddressDto.builder()
-                .id(address.getId())
                 .country(address.getCountry())
                 .city(address.getCity())
                 .street(address.getStreet())

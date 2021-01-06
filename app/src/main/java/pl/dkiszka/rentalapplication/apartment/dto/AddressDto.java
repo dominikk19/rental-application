@@ -13,7 +13,7 @@ import lombok.Getter;
 @Getter
 @Builder
 public class AddressDto {
-    private String id;
+
     private String country;
     private String city;
     private String street;

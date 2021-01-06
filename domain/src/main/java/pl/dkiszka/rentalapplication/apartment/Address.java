@@ -14,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 @Getter(AccessLevel.PACKAGE)
 @Builder(access = AccessLevel.PACKAGE)
 class Address {
-    private final String id;
     private final String country;
     private final String city;
     private final String street;

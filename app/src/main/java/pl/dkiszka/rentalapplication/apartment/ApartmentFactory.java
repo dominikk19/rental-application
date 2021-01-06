@@ -24,7 +24,6 @@ class ApartmentFactory {
 
     private Address extractAddressFromDto(AddressDto addressDto) {
         return Address.builder()
-                .id(addressDto.getId())
                 .country(addressDto.getCountry())
                 .city(addressDto.getCity())
                 .street(addressDto.getStreet())
