@@ -32,4 +32,9 @@ class SqlHotel {
 
     @Embedded
     private SqlAddress address;
+
+    Hotel toHotel() {
+        var hotelAddress = address.toAddress();
+        return new Hotel(id,name, hotelAddress);
+    }
 }

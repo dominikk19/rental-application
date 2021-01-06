@@ -6,5 +6,5 @@ package pl.dkiszka.rentalapplication.hotel;
  * @date 05.01.2021
  */
 interface HotelRepository {
-    void save(Hotel hotel);
+    Hotel save(Hotel hotel);
 }

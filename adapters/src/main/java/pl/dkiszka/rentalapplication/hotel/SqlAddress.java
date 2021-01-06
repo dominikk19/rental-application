@@ -32,4 +32,8 @@ class SqlAddress {
     private String street;
     private String postalCode;
     private String buildingNumber;
+
+    Address toAddress() {
+    return new Address(country,city,street,postalCode,buildingNumber);
+    }
 }

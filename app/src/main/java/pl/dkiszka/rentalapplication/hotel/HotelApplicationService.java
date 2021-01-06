@@ -2,6 +2,7 @@ package pl.dkiszka.rentalapplication.hotel;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import pl.dkiszka.rentalapplication.hotel.dto.HotelDto;
 
 /**
  * @author Dominik Kiszka {dominikk19}
@@ -13,8 +14,8 @@ class HotelApplicationService {
 
     private final HotelRepository hotelRepository;
 
-    public void add(final String name, final String counrty, final String city, final String street, final String postalCode, final String buildingNumber){
-        var hotel =  new HotelFactory().create(name,counrty,city, street, postalCode, buildingNumber);
-        hotelRepository.save(hotel);
+    public HotelDto add(HotelDto hotelDto){
+        var hotel =  new HotelFactory().create(hotelDto);
+        return HotelDtoFactory.fromHotel(hotelRepository.save(hotel));
     }
 }

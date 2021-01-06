@@ -1,6 +1,7 @@
 package pl.dkiszka.rentalapplication.hotel;
 
-import org.apache.logging.log4j.util.Strings;
+import pl.dkiszka.rentalapplication.hotel.dto.AddressDto;
+import pl.dkiszka.rentalapplication.hotel.dto.HotelDto;
 
 /**
  * @author Dominik Kiszka {dominikk19}
@@ -9,8 +10,16 @@ import org.apache.logging.log4j.util.Strings;
  */
 class HotelFactory {
 
-    public Hotel create(final String name, final String counrty, final String city, final String street, final String postalCode, final String buildingNumber) {
-        var address = new Address(counrty, city, street, postalCode, buildingNumber);
-        return new Hotel(Strings.EMPTY,name, address);
+    Hotel create(HotelDto hotelDto) {
+        var address = extractAddressFromDto(hotelDto.getAddress());
+        return new Hotel(hotelDto.getId(), hotelDto.getName(), address);
+    }
+
+    private Address extractAddressFromDto(AddressDto addressDto) {
+        return new Address(addressDto.getCountry(),
+                addressDto.getCity(),
+                addressDto.getStreet(),
+                addressDto.getPostalCode(),
+                addressDto.getBuildingNumber());
     }
 }

@@ -15,9 +15,9 @@ class JpaHotelRepository implements HotelRepository {
     private final SpringJpaHotelRepository springJpaHotelRepository;
 
     @Override
-    public void save(Hotel hotel) {
+    public Hotel save(Hotel hotel) {
         var sqlHotel = SqlHotel.fromHotel(hotel);
-        springJpaHotelRepository.save(sqlHotel);
+        return springJpaHotelRepository.save(sqlHotel).toHotel();
     }
 }
 
