@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter
 class Hotel {
+    private final String id;
     private final String name;
     private final Address address;
-
 }

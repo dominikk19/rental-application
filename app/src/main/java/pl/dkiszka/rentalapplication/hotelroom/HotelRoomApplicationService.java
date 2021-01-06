@@ -1,5 +1,8 @@
 package pl.dkiszka.rentalapplication.hotelroom;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+
 import java.util.Map;
 
 /**
@@ -7,8 +10,13 @@ import java.util.Map;
  * @project rental-application
  * @date 26.12.2020
  */
-public class HotelRoomApplicationService {
-    public void add(String hotelId, int number, Map<String, Double> spacesDefinition, String descriptoin){
+@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
+class HotelRoomApplicationService {
 
+    private final HotelRoomRepository hotelRoomRepository;
+
+    public void add(String hotelId, int number, Map<String, Double> spacesDefinition, String descriptoin) {
+        var hotelRoom = new HotelRoomFactory().create(hotelId, number, spacesDefinition, descriptoin);
+        hotelRoomRepository.save(hotelRoom);
     }
 }

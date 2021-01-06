@@ -12,6 +12,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter(AccessLevel.PACKAGE)
 class SquareMater {
-    private final Double sizel;
+    private final Double size;
 
 }

@@ -14,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter
 class HotelRoom {
+    private final String id;
     private final String hotelId;
     private final int number;
     private final List<Space> spaces;

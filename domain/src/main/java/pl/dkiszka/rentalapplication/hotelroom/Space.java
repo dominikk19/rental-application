@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Getter
 class Space {
+    private final String id;
     private final String name;
     private final SquareMater squareMater;
 

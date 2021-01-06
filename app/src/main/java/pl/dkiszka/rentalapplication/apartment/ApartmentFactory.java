@@ -16,7 +16,7 @@ import static java.util.stream.Collectors.toList;
  */
 class ApartmentFactory {
 
-    Apartment fromTo(String ownerId, ApartmentDto apartment) {
+    Apartment fromDtoTo(String ownerId, ApartmentDto apartment) {
         var address = extractAddressFromDto(apartment.getAddress());
         var rooms = extractRoomsFromDto(apartment.getRooms());
         return new Apartment(apartment.getId(), ownerId, address, rooms);
