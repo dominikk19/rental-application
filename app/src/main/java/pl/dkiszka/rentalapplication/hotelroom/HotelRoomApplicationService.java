@@ -2,8 +2,7 @@ package pl.dkiszka.rentalapplication.hotelroom;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-
-import java.util.Map;
+import pl.dkiszka.rentalapplication.hotelroom.dto.HotelRoomDto;
 
 /**
  * @author Dominik Kiszka {dominikk19}
@@ -15,8 +14,8 @@ class HotelRoomApplicationService {
 
     private final HotelRoomRepository hotelRoomRepository;
 
-    public void add(String hotelId, int number, Map<String, Double> spacesDefinition, String descriptoin) {
-        var hotelRoom = new HotelRoomFactory().create(hotelId, number, spacesDefinition, descriptoin);
-        hotelRoomRepository.save(hotelRoom);
+    public HotelRoomDto add(HotelRoomDto hotelRoomDto) {
+        var hotelRoom = new HotelRoomFactory().create(hotelRoomDto);
+        return HotelRoomDtoFactory.fromHotelRoom(hotelRoomRepository.save(hotelRoom));
     }
 }

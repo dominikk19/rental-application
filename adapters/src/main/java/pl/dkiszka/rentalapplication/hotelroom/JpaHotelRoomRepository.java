@@ -17,9 +17,9 @@ class JpaHotelRoomRepository implements HotelRoomRepository {
 
 
     @Override
-    public void save(HotelRoom hotelRoom) {
+    public HotelRoom save(HotelRoom hotelRoom) {
         var sqlHotelRoom = SqlHotelRoom.fromHotelRoom(hotelRoom);
-        springJpaHotelRoomRepository.save(sqlHotelRoom);
+        return springJpaHotelRoomRepository.save(sqlHotelRoom).toHotelRoom();
     }
 }
 

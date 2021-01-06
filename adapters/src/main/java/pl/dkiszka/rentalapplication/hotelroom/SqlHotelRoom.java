@@ -39,4 +39,12 @@ class SqlHotelRoom {
     @OneToMany
     private List<SqlSpace> spaces;
     private String description;
+
+    HotelRoom toHotelRoom() {
+        var hotelRoomSpeces = spaces.stream()
+                .map(SqlSpace::toSpace)
+                .collect(toList());
+
+        return new HotelRoom(id, hotelId, number, hotelRoomSpeces, description);
+    }
 }

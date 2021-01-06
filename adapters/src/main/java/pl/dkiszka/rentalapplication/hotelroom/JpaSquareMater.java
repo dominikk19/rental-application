@@ -2,6 +2,7 @@ package pl.dkiszka.rentalapplication.hotelroom;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
@@ -14,6 +15,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
+@Getter(value = AccessLevel.PACKAGE)
 class JpaSquareMater {
 
     static JpaSquareMater fromSquareMater(SquareMater squareMater) {

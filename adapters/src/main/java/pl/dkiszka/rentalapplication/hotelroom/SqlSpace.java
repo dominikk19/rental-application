@@ -31,4 +31,8 @@ class SqlSpace {
 
     @Embedded
     private JpaSquareMater squareMater;
+
+    Space toSpace() {
+        return new Space(id, name, new SquareMater(squareMater.getSize()));
+    }
 }
