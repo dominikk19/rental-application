@@ -33,4 +33,17 @@ class SqlAddress {
     private String postalCode;
     private String houseNumber;
     private String apartmentNumber;
+
+
+    Address toAddress(){
+        return Address.builder()
+                .id(id)
+                .country(country)
+                .city(city)
+                .street(street)
+                .postalCode(postalCode)
+                .houseNumber(houseNumber)
+                .apartmentNumber(apartmentNumber)
+                .build();
+    }
 }

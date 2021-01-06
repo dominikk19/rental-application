@@ -30,4 +30,8 @@ class SqlRoom {
 
     @Embedded
     private JpaSquareMater size;
+
+    Room toRoom() {
+        return new Room(id, name, new SquareMater(size.getSize()));
+    }
 }

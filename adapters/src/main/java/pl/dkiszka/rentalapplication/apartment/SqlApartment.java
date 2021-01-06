@@ -58,4 +58,12 @@ class SqlApartment {
         this.rooms.addAll(rooms);
         this.description = description;
     }
+
+    Apartment toApartment() {
+        var apartmentRooms = rooms.stream()
+                .map(SqlRoom::toRoom)
+                .collect(toList());
+
+        return new Apartment(id, ownerId, address.toAddress(), apartmentRooms);
+    }
 }

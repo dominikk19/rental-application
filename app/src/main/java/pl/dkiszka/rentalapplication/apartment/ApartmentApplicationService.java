@@ -13,8 +13,9 @@ class ApartmentApplicationService {
 
     private final ApartmentRepository apartmentRepository;
 
-    public void add(String ownerId, ApartmentDto apartmentDto) {
-        var newApartment = new ApartmentFactory().fromDtoTo(ownerId, apartmentDto);
-        apartmentRepository.save(newApartment);
+    public ApartmentDto add(ApartmentDto apartmentDto) {
+        var newApartment = new ApartmentFactory().fromDtoTo(apartmentDto);
+        var savedApartment = apartmentRepository.save(newApartment);
+        return ApartmentDtoFactory.fromApartment(savedApartment);
     }
 }

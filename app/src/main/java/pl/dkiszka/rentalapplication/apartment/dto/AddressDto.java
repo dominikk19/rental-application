@@ -1,17 +1,17 @@
 package pl.dkiszka.rentalapplication.apartment.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 /**
  * @author Dominik Kiszka {dominikk19}
  * @project rental-application
  * @date 22.12.2020
  */
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Getter
-@Setter
+@Builder
 public class AddressDto {
     private String id;
     private String country;
@@ -21,7 +21,4 @@ public class AddressDto {
     private String houseNumber;
     private String apartmentNumber;
 
-    public void setId(String id) {
-        this.id = id;
-    }
 }

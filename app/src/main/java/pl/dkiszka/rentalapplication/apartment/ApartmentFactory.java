@@ -16,10 +16,10 @@ import static java.util.stream.Collectors.toList;
  */
 class ApartmentFactory {
 
-    Apartment fromDtoTo(String ownerId, ApartmentDto apartment) {
+    Apartment fromDtoTo(ApartmentDto apartment) {
         var address = extractAddressFromDto(apartment.getAddress());
         var rooms = extractRoomsFromDto(apartment.getRooms());
-        return new Apartment(apartment.getId(), ownerId, address, rooms);
+        return new Apartment(apartment.getId(), apartment.getOwnerId(), address, rooms);
     }
 
     private Address extractAddressFromDto(AddressDto addressDto) {

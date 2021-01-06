@@ -6,5 +6,5 @@ package pl.dkiszka.rentalapplication.apartment;
  * @date 26.12.2020
  */
 interface ApartmentRepository {
-    void save(Apartment apartment);
+    Apartment save(Apartment apartment);
 }

@@ -13,8 +13,8 @@ class JpaApartmentRepository implements ApartmentRepository {
 
 
     @Override
-    public void save(Apartment apartment) {
+    public Apartment save(Apartment apartment) {
         var sqlApartment = SqlApartment.fromApartment(apartment);
-        springJpaApartmentRepository.save(sqlApartment);
+        return springJpaApartmentRepository.save(sqlApartment).toApartment();
     }
 }

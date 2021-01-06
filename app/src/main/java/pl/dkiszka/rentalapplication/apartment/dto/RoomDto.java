@@ -11,8 +11,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Getter
 public class RoomDto {
+
     private final String id;
     private final String name;
     private final Double size;
-
 }
