@@ -1,5 +1,7 @@
 package pl.dkiszka.rentalapplication.apartment;
 
+import java.util.Optional;
+
 /**
  * @author Dominik Kiszka {dominikk19}
  * @project rental-application
@@ -7,4 +9,6 @@ package pl.dkiszka.rentalapplication.apartment;
  */
 interface ApartmentRepository {
     Apartment save(Apartment apartment);
+
+    Optional<Apartment> findById(String id);
 }

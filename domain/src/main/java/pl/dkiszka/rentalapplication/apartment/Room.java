@@ -12,7 +12,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter(value = AccessLevel.PACKAGE)
 class Room {
+
+    static Room restore(RoomSnapshot roomSnapshot) {
+        return new Room(roomSnapshot.getId(), roomSnapshot.getName(), roomSnapshot.getSize());
+    }
+
     private final String id;
     private final String name;
     private final SquareMater size;
+
+    RoomSnapshot getSnapshot() {
+        return new RoomSnapshot(id, name, size);
+    }
 }

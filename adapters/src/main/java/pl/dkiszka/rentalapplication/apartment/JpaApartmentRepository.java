@@ -2,6 +2,8 @@ package pl.dkiszka.rentalapplication.apartment;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.Optional;
+
 /**
  * @author Dominik Kiszka {dominikk19}
  * @project rental-application
@@ -16,5 +18,11 @@ class JpaApartmentRepository implements ApartmentRepository {
     public Apartment save(Apartment apartment) {
         var sqlApartment = SqlApartment.fromApartment(apartment);
         return springJpaApartmentRepository.save(sqlApartment).toApartment();
+    }
+
+    @Override
+    public Optional<Apartment> findById(String id) {
+        return springJpaApartmentRepository.findById(id)
+                .map(SqlApartment::toApartment);
     }
 }
