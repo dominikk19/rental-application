@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+   http://java.sun.com/xml/ns/persistence/orm_1_0.xsd"
+                 version="1.0">
+    <description>XML Mapping file</description>
+
+    <entity class="pl.dkiszka.rentalapplication.apartment.ApartmentSnapshot" access="FIELD">
+        <table name="apartments"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="IDENTITY"/>
+            </id>
+            <basic name="ownerId">
+                <column nullable="false"/>
+            </basic>
+            <basic name="description">
+                <column nullable="true"/>
+            </basic>
+            <one-to-many name="rooms" fetch="EAGER">
+                <join-column name="apartment_id"/>
+                <cascade>
+                    <cascade-all/>
+                </cascade>
+            </one-to-many>
+            <embedded name="address"/>
+        </attributes>
+    </entity>
+
+
+    <entity class="pl.dkiszka.rentalapplication.apartment.RoomSnapshot" access="FIELD">
+        <table name="rooms"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="IDENTITY"/>
+            </id>
+            <basic name="name">
+                <column nullable="false"/>
+            </basic>
+            <embedded name="size"/>
+        </attributes>
+
+
+    </entity>
+
+
+    <embeddable class="pl.dkiszka.rentalapplication.apartment.AddressSnapshot">
+        <attributes>
+            <basic name="country">
+                <column nullable="false"/>
+            </basic>
+            <basic name="city">
+                <column nullable="false"/>
+            </basic>
+            <basic name="street">
+                <column nullable="false"/>
+            </basic>
+            <basic name="postalCode">
+                <column nullable="false"/>
+            </basic>
+            <basic name="houseNumber">
+                <column nullable="false"/>
+            </basic>
+            <basic name="apartmentNumber">
+                <column nullable="false"/>
+            </basic>
+        </attributes>
+    </embeddable>
+
+    <embeddable class="pl.dkiszka.rentalapplication.apartment.SquareMater">
+        <attributes>
+            <basic name="size">
+                <column nullable="false"/>
+            </basic>
+        </attributes>
+    </embeddable>
+
+
+</entity-mappings>

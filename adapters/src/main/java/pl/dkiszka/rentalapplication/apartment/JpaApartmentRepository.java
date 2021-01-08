@@ -16,13 +16,12 @@ class JpaApartmentRepository implements ApartmentRepository {
 
     @Override
     public Apartment save(Apartment apartment) {
-        var sqlApartment = SqlApartment.fromApartment(apartment);
-        return springJpaApartmentRepository.save(sqlApartment).toApartment();
+        return Apartment.restore(springJpaApartmentRepository.save(apartment.getSnapshot()));
     }
 
     @Override
     public Optional<Apartment> findById(String id) {
         return springJpaApartmentRepository.findById(id)
-                .map(SqlApartment::toApartment);
+                .map(Apartment::restore);
     }
 }
