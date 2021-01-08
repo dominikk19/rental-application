@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
  * @date 22.12.2020
  */
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
-@Getter(AccessLevel.PACKAGE)
+@Getter(value = AccessLevel.PACKAGE)
 class SquareMater {
     private final Double size;
 }

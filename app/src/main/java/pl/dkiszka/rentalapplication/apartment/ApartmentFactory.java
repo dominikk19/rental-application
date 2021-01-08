@@ -16,14 +16,14 @@ import static java.util.stream.Collectors.toList;
  */
 class ApartmentFactory {
 
-    Apartment fromDtoTo(ApartmentDto apartment) {
-        var address = extractAddressFromDto(apartment.getAddress());
-        var rooms = extractRoomsFromDto(apartment.getRooms());
-        return new Apartment(apartment.getId(), apartment.getOwnerId(), address, rooms);
+    Apartment fromDtoTo(ApartmentDto apartmentDto) {
+        var address = extractAddressFromDto(apartmentDto.getAddress());
+        var rooms = extractRoomsFromDto(apartmentDto.getRooms());
+        return Apartment.restore(new ApartmentSnapshot(apartmentDto.getId(), apartmentDto.getOwnerId(), address, rooms, apartmentDto.getDescription()));
     }
 
-    private Address extractAddressFromDto(AddressDto addressDto) {
-        return Address.builder()
+    private AddressSnapshot extractAddressFromDto(AddressDto addressDto) {
+        return AddressSnapshot.builder()
                 .country(addressDto.getCountry())
                 .city(addressDto.getCity())
                 .street(addressDto.getStreet())
@@ -33,15 +33,15 @@ class ApartmentFactory {
                 .build();
     }
 
-    private List<Room> extractRoomsFromDto(List<RoomDto> rooms) {
+    private List<RoomSnapshot> extractRoomsFromDto(List<RoomDto> rooms) {
         return rooms
                 .stream()
                 .map(this::convertRoomFromDto)
                 .collect(toList());
     }
 
-    private Room convertRoomFromDto(RoomDto room) {
-        return new Room(room.getId(), room.getName(), new SquareMater(room.getSize()));
+    private RoomSnapshot convertRoomFromDto(RoomDto room) {
+        return new RoomSnapshot(room.getId(), room.getName(), room.getSize());
     }
 
 }

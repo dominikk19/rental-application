@@ -1,7 +1,6 @@
 package pl.dkiszka.rentalapplication.apartment;
 
 import lombok.AccessLevel;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -10,11 +9,10 @@ import lombok.RequiredArgsConstructor;
  * @date 22.12.2020
  */
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
-@Getter(value = AccessLevel.PACKAGE)
 class Room {
 
     static Room restore(RoomSnapshot roomSnapshot) {
-        return new Room(roomSnapshot.getId(), roomSnapshot.getName(), roomSnapshot.getSize());
+        return new Room(roomSnapshot.getId(), roomSnapshot.getName(), new SquareMater(roomSnapshot.getSize()));
     }
 
     private final String id;
@@ -22,6 +20,6 @@ class Room {
     private final SquareMater size;
 
     RoomSnapshot getSnapshot() {
-        return new RoomSnapshot(id, name, size);
+        return new RoomSnapshot(id, name, size.getSize());
     }
 }

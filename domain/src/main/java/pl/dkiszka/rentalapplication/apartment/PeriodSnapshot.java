@@ -1,8 +1,9 @@
 package pl.dkiszka.rentalapplication.apartment;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
@@ -11,9 +12,10 @@ import java.time.LocalDate;
  * @project rental-application
  * @date 07.01.2021
  */
-@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter(value = AccessLevel.PACKAGE)
 class PeriodSnapshot {
-    private final LocalDate start;
-    private final LocalDate end;
+    private LocalDate start;
+    private LocalDate end;
 }

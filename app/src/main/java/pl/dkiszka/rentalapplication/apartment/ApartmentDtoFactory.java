@@ -15,20 +15,21 @@ class ApartmentDtoFactory {
 
 
     static ApartmentDto fromApartment(Apartment apartment) {
-        var romms = apartment.getRooms().stream()
+        var apartmentSnapshot = apartment.getSnapshot();
+        var romms = apartmentSnapshot.getRooms().stream()
                 .map(ApartmentDtoFactory::fromRoom)
                 .collect(toList());
-        var address = fromAddress(apartment.getAddress());
+        var address = fromAddress(apartmentSnapshot.getAddress());
 
-        return new ApartmentDto(apartment.getId(), apartment.getOwnerId(), address, romms, apartment.getDescription());
+        return new ApartmentDto(apartmentSnapshot.getId(), apartmentSnapshot.getOwnerId(), address, romms, apartmentSnapshot.getDescription());
 
     }
 
-    private static RoomDto fromRoom(Room room) {
-        return new RoomDto(room.getId(), room.getName(), room.getSize().getSize());
+    private static RoomDto fromRoom(RoomSnapshot room) {
+        return new RoomDto(room.getId(), room.getName(), room.getSize());
     }
 
-    private static AddressDto fromAddress(Address address) {
+    private static AddressDto fromAddress(AddressSnapshot address) {
         return AddressDto.builder()
                 .country(address.getCountry())
                 .city(address.getCity())

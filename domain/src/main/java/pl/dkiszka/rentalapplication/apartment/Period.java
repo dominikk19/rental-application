@@ -12,6 +12,10 @@ import java.time.LocalDate;
  */
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 class Period {
+    static Period restore(PeriodSnapshot periodSnapshot) {
+        return new Period(periodSnapshot.getStart(), periodSnapshot.getEnd());
+    }
+
     private final LocalDate start;
     private final LocalDate end;
 
