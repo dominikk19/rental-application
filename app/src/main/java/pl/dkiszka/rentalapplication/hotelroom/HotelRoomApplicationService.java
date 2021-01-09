@@ -2,6 +2,8 @@ package pl.dkiszka.rentalapplication.hotelroom;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import pl.dkiszka.rentalapplication.common.events.DomainEventPublisher;
+import pl.dkiszka.rentalapplication.hotelroom.dto.HotelRoomBookingDto;
 import pl.dkiszka.rentalapplication.hotelroom.dto.HotelRoomDto;
 
 /**
@@ -13,9 +15,17 @@ import pl.dkiszka.rentalapplication.hotelroom.dto.HotelRoomDto;
 class HotelRoomApplicationService {
 
     private final HotelRoomRepository hotelRoomRepository;
+    private final DomainEventPublisher domainEventPublisher;
 
-    public HotelRoomDto add(HotelRoomDto hotelRoomDto) {
+    HotelRoomDto add(HotelRoomDto hotelRoomDto) {
         var hotelRoom = new HotelRoomFactory().create(hotelRoomDto);
         return HotelRoomDtoFactory.fromHotelRoom(hotelRoomRepository.save(hotelRoom));
+    }
+
+    void book(String id, HotelRoomBookingDto hotelRoomBookingDto) {
+        var hotelRoom = hotelRoomRepository.findById(id);
+        hotelRoom.ifPresent(it ->
+                domainEventPublisher.publish(it.book(hotelRoomBookingDto.getTenantId(), hotelRoomBookingDto.getDays()))
+        );
     }
 }

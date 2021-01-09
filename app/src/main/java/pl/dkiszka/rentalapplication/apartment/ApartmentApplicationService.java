@@ -1,9 +1,9 @@
 package pl.dkiszka.rentalapplication.apartment;
 
 import lombok.RequiredArgsConstructor;
-import pl.dkiszka.rentalapplication.DomainEventPublisher;
 import pl.dkiszka.rentalapplication.apartment.dto.ApartmentBookingDto;
 import pl.dkiszka.rentalapplication.apartment.dto.ApartmentDto;
+import pl.dkiszka.rentalapplication.common.events.DomainEventPublisher;
 
 /**
  * @author Dominik Kiszka {dominikk19}

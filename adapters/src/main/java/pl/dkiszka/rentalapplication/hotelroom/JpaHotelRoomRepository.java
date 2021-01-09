@@ -4,6 +4,8 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.Repository;
 
+import java.util.Optional;
+
 /**
  * @author Dominik Kiszka {dominikk19}
  * @project rental-application
@@ -21,9 +23,17 @@ class JpaHotelRoomRepository implements HotelRoomRepository {
         var sqlHotelRoom = SqlHotelRoom.fromHotelRoom(hotelRoom);
         return springJpaHotelRoomRepository.save(sqlHotelRoom).toHotelRoom();
     }
+
+    @Override
+    public Optional<HotelRoom> findById(String id) {
+        return springJpaHotelRoomRepository.findById(id)
+                .map(SqlHotelRoom::toHotelRoom);
+    }
 }
 
 
 interface SpringJpaHotelRoomRepository extends Repository<SqlHotelRoom, String> {
     SqlHotelRoom save(SqlHotelRoom hotelRoom);
+
+    Optional<SqlHotelRoom> findById(String id);
 }

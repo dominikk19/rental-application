@@ -3,7 +3,9 @@ package pl.dkiszka.rentalapplication.hotelroom;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import pl.dkiszka.rentalapplication.hotelroom.vo.HotelRoomBookedEvent;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -19,5 +21,9 @@ class HotelRoom {
     private final int number;
     private final List<Space> spaces;
     private final String description;
+
+    HotelRoomBookedEvent book(String tenantId, List<LocalDate> days){
+        return HotelRoomBookedEvent.create(hotelId,id,tenantId,days);
+    }
 
 }

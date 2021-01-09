@@ -2,7 +2,7 @@ package pl.dkiszka.rentalapplication.apartment;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pl.dkiszka.rentalapplication.DomainEventPublisher;
+import pl.dkiszka.rentalapplication.common.events.DomainEventPublisher;
 
 /**
  * @author Dominik Kiszka {dominikk19}
@@ -14,7 +14,7 @@ class ApartmentConfiguration {
 
     @Bean
     ApartmentApplicationService apartmentApplicationService(SpringJpaApartmentRepository springJpaApartmentRepository,
-                                                            DomainEventPublisher domainEventPublisher){
-        return new ApartmentApplicationService(new JpaApartmentRepository(springJpaApartmentRepository), domainEventPublisher);
+                                                            DomainEventPublisher publisher) {
+        return new ApartmentApplicationService(new JpaApartmentRepository(springJpaApartmentRepository), publisher);
     }
 }
