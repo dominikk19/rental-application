@@ -3,7 +3,6 @@ package pl.dkiszka.rentalapplication.hotelroom.vo;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import pl.dkiszka.rentalapplication.common.events.BookedEvent;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,7 +16,7 @@ import java.util.UUID;
  */
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-public class HotelRoomBookedEvent implements BookedEvent {
+public class HotelRoomBookedEvent {
 
     public static HotelRoomBookedEvent create(String hotelId, String hotelRoomId, String tenantId, List<LocalDate> days) {
 
