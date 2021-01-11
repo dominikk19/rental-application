@@ -2,7 +2,7 @@ package pl.dkiszka.rentalapplication.hotelroom;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import pl.dkiszka.rentalapplication.common.events.DomainEventPublisher;
+import pl.dkiszka.rentalapplication.eventchanel.DomainEventPublisher;
 import pl.dkiszka.rentalapplication.hotelroom.dto.HotelRoomBookingDto;
 import pl.dkiszka.rentalapplication.hotelroom.dto.HotelRoomDto;
 

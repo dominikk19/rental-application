@@ -3,7 +3,6 @@ package pl.dkiszka.rentalapplication.apartment.vo;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import pl.dkiszka.rentalapplication.common.events.BookedEvent;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,12 +15,12 @@ import java.util.UUID;
  */
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-public class ApartmentBookedEvent implements BookedEvent {
+public class ApartmentBookedEvent {
 
-    public static ApartmentBookedEvent create(String apartmentId, String tenantId, String ownerId, LocalDate start, LocalDate end) {
+    public static ApartmentBookedEvent create(String apartmentUuid, String tenantId, String ownerId, LocalDate start, LocalDate end) {
         return new ApartmentBookedEvent(UUID.randomUUID().toString(),
                 LocalDateTime.now(),
-                apartmentId,
+                apartmentUuid,
                 ownerId,
                 tenantId,
                 start,
@@ -30,7 +29,7 @@ public class ApartmentBookedEvent implements BookedEvent {
 
     private final String eventId;
     private final LocalDateTime eventCreationDataTime;
-    private final String apartmentId;
+    private final String apartmentUuid;
     private final String ownerId;
     private final String tenantId;
     private final LocalDate start;

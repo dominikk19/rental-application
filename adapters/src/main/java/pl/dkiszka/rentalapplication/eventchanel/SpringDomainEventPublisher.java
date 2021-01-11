@@ -1,6 +1,7 @@
-package pl.dkiszka.rentalapplication.common.events;
+package pl.dkiszka.rentalapplication.eventchanel;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 import pl.dkiszka.rentalapplication.apartment.vo.ApartmentBookedEvent;
 import pl.dkiszka.rentalapplication.hotelroom.vo.HotelRoomBookedEvent;
@@ -13,14 +14,15 @@ import pl.dkiszka.rentalapplication.hotelroom.vo.HotelRoomBookedEvent;
 @RequiredArgsConstructor
 @Component
 public class SpringDomainEventPublisher implements DomainEventPublisher {
+    private final ApplicationEventPublisher publisher;
 
     @Override
     public void publish(ApartmentBookedEvent event) {
-
+        publisher.publishEvent(event);
     }
 
     @Override
     public void publish(HotelRoomBookedEvent event) {
-
+        publisher.publishEvent(event);
     }
 }

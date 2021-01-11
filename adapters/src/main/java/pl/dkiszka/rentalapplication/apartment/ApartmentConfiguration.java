@@ -2,7 +2,7 @@ package pl.dkiszka.rentalapplication.apartment;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pl.dkiszka.rentalapplication.common.events.DomainEventPublisher;
+import pl.dkiszka.rentalapplication.eventchanel.DomainEventPublisher;
 
 /**
  * @author Dominik Kiszka {dominikk19}

@@ -5,10 +5,9 @@ import java.util.Optional;
 /**
  * @author Dominik Kiszka {dominikk19}
  * @project rental-application
- * @date 26.12.2020
+ * @date 09.01.2021
  */
-interface  ApartmentRepository {
-    Apartment save(Apartment apartment);
+public interface ApartmentQueryRepository {
 
-    Optional<Apartment> findById(String id);
+    Optional<ApartmentSnapshot> findById(String id);
 }

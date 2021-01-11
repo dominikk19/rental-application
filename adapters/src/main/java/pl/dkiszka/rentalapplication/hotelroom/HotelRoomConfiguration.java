@@ -3,7 +3,7 @@ package pl.dkiszka.rentalapplication.hotelroom;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pl.dkiszka.rentalapplication.common.events.SpringDomainEventPublisher;
+import pl.dkiszka.rentalapplication.eventchanel.SpringDomainEventPublisher;
 
 /**
  * @author Dominik Kiszka {dominikk19}

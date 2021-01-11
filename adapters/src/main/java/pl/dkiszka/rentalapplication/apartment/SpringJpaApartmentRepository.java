@@ -10,8 +10,10 @@ import java.util.Optional;
  * @project rental-application
  * @date 26.12.2020
  */
-interface SpringJpaApartmentRepository extends Repository<ApartmentSnapshot, String> {
+interface SpringJpaApartmentRepository extends ApartmentQueryRepository, Repository<ApartmentSnapshot, String> {
     Optional<ApartmentSnapshot> findById(String id);
 
     ApartmentSnapshot save(ApartmentSnapshot apartment);
 }
+
+
