@@ -15,8 +15,8 @@ import pl.dkiszka.rentalapplication.eventchanel.SpringDomainEventPublisher;
 class HotelRoomConfiguration {
 
     @Bean
-    HotelRoomApplicationService hotelRoomApplicationService(SpringJpaHotelRoomRepository springJpaHotelRoomRepository,
+    HotelRoomApplicationService hotelRoomApplicationService(JpaHotelRoomRepository jpaHotelRoomRepository,
                                                             SpringDomainEventPublisher publisher) {
-        return new HotelRoomApplicationService(new JpaHotelRoomRepository(springJpaHotelRoomRepository), publisher);
+        return new HotelRoomApplicationService(jpaHotelRoomRepository, publisher);
     }
 }

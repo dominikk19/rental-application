@@ -15,7 +15,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
-@Getter(value = AccessLevel.PACKAGE)
+@Getter
 class JpaSquareMater {
 
     static JpaSquareMater fromSquareMater(SquareMater squareMater) {

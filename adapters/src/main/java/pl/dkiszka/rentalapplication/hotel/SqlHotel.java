@@ -2,21 +2,26 @@ package pl.dkiszka.rentalapplication.hotel;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @author Dominik Kiszka {dominikk19}
  * @project rental-application
  * @date 06.01.2021
  */
+
 @Entity
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
+@Table(name = "hotel")
 class SqlHotel {
 
     static SqlHotel fromHotel(Hotel hotel) {

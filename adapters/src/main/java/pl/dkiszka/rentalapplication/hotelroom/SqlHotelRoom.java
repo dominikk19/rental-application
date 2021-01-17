@@ -2,6 +2,7 @@ package pl.dkiszka.rentalapplication.hotelroom;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
@@ -20,6 +21,7 @@ import static java.util.stream.Collectors.toList;
 @Entity
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 class SqlHotelRoom {
 
     static SqlHotelRoom fromHotelRoom(HotelRoom hotelRoom) {

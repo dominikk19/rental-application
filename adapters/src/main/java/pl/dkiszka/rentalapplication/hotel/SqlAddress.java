@@ -3,6 +3,7 @@ package pl.dkiszka.rentalapplication.hotel;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
@@ -16,6 +17,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 class SqlAddress {
 
     static SqlAddress fromAddress(Address address) {
@@ -34,6 +36,6 @@ class SqlAddress {
     private String buildingNumber;
 
     Address toAddress() {
-    return new Address(country,city,street,postalCode,buildingNumber);
+        return new Address(country, city, street, postalCode, buildingNumber);
     }
 }

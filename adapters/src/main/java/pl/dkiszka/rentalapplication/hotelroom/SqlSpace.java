@@ -2,6 +2,7 @@ package pl.dkiszka.rentalapplication.hotelroom;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Embedded;
@@ -17,6 +18,7 @@ import javax.persistence.Id;
 @Entity
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 class SqlSpace {
 
     static SqlSpace fromSpace(Space space) {

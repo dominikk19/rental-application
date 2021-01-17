@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 class ApartmentBookingHistoryConfiguration {
 
     @Bean
-    ApartmentBookingHistoryFacade apartmentBookingHistoryFacade(SpringJpaApartmentBookingHistoryRepository springRepository) {
-        return new ApartmentBookingHistoryFacade(new JpaApartmentBookingHistoryRepository(springRepository));
+    ApartmentBookingHistoryFacade apartmentBookingHistoryFacade(JpaApartmentBookingHistoryRepository jpaApartmentBookingHistoryRepository) {
+        return new ApartmentBookingHistoryFacade(jpaApartmentBookingHistoryRepository);
     }
 }

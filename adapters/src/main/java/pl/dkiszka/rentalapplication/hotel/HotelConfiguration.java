@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 class HotelConfiguration {
 
     @Bean
-    HotelApplicationService hotelApplicationService(SpringJpaHotelRepository springJpaHotelRepository){
-        return new HotelApplicationService(new JpaHotelRepository(springJpaHotelRepository));
+    HotelApplicationService hotelApplicationService(JpaHotelRepository jpaHotelRepository) {
+        return new HotelApplicationService(jpaHotelRepository);
     }
 }

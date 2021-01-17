@@ -24,7 +24,7 @@ import static java.util.stream.Collectors.toSet;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter(AccessLevel.PACKAGE)
+@Getter
 class SqlApartmentBookingHistory {
 
     static SqlApartmentBookingHistory from(ApartmentBookingHistory apartmentBookingHistory) {
