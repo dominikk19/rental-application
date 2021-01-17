@@ -7,4 +7,6 @@ package pl.dkiszka.rentalapplication.booking;
  */
 interface CommandRegistry {
     void register(String id);
+
+    void accept(String id);
 }

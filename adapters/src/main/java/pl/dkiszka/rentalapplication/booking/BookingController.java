@@ -2,6 +2,7 @@ package pl.dkiszka.rentalapplication.booking;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,12 @@ class BookingController {
 
 
     @PutMapping("/reject/{id}")
-    void reject(String id){
+    void reject(@PathVariable String id) {
         commandRegistry.register(id);
+    }
+
+    @PutMapping("/accept/{id}")
+    void accept(@PathVariable String id) {
+        commandRegistry.accept(id);
     }
 }
