@@ -13,8 +13,10 @@ import pl.dkiszka.rentalapplication.eventchanel.DomainEventPublisher;
 class ApartmentConfiguration {
 
     @Bean
-    ApartmentApplicationService apartmentApplicationService(SpringJpaApartmentRepository springJpaApartmentRepository,
+    ApartmentApplicationService apartmentApplicationService(JpaApartmentRepository jpaApartmentRepository,
+                                                            JpaBookingRepository jpaBookingRepository,
                                                             DomainEventPublisher publisher) {
-        return new ApartmentApplicationService(new JpaApartmentRepository(springJpaApartmentRepository), publisher);
+        return new ApartmentApplicationService(jpaApartmentRepository, jpaBookingRepository, publisher);
     }
+
 }

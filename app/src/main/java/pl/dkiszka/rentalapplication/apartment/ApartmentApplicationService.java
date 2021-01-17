@@ -14,6 +14,7 @@ import pl.dkiszka.rentalapplication.eventchanel.DomainEventPublisher;
 class ApartmentApplicationService {
 
     private final ApartmentRepository apartmentRepository;
+    private final BookingRepository bookingRepository;
     private final DomainEventPublisher domainEventPublisher;
 
     ApartmentDto add(ApartmentDto apartmentDto) {
@@ -24,8 +25,11 @@ class ApartmentApplicationService {
 
     void book(String id, ApartmentBookingDto apartmentBookingDto) {
         var apartment = apartmentRepository.findById(id);
-        apartment.ifPresent(it ->
-                domainEventPublisher.publish(it.book(apartmentBookingDto.getTenantId(),
-                        new Period(apartmentBookingDto.getStart(), apartmentBookingDto.getEnd()))));
+        apartment.ifPresent(it -> {
+            var booking = it.book(apartmentBookingDto.getTenantId(), new Period(apartmentBookingDto.getStart(), apartmentBookingDto.getEnd()));
+            domainEventPublisher.publish(it.bookedEvent(bookingRepository.save(booking)));
+        });
+
     }
 }
+

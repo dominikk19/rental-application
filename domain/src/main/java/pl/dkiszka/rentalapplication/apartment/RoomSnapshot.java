@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
  */
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
-@Getter(value = AccessLevel.PACKAGE)
+@Getter
 class RoomSnapshot {
     private String id;
     private String name;

@@ -45,8 +45,15 @@ class Apartment {
 
     }
 
-    ApartmentBookedEvent book(String tenantId, Period period) {
-        var periodSnapshot = period.getSnapshot();
-        return ApartmentBookedEvent.create(id, tenantId, ownerId, periodSnapshot.getStart(), periodSnapshot.getEnd());
+    Booking book(String tenantId, Period period) {
+        return Booking.create(id, tenantId, period);
     }
+
+    ApartmentBookedEvent bookedEvent(Booking booking) {
+        var bookingSnapshot = booking.getSnapshot();
+        var periodSnapshot = bookingSnapshot.getPeriod();
+        return ApartmentBookedEvent.create(id, bookingSnapshot.getTenantId(), ownerId, periodSnapshot.getStart(), periodSnapshot.getEnd());
+    }
+
+
 }

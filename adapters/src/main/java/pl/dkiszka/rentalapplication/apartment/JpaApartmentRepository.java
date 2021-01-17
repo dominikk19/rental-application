@@ -1,6 +1,7 @@
 package pl.dkiszka.rentalapplication.apartment;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
@@ -10,6 +11,7 @@ import java.util.Optional;
  * @date 26.12.2020
  */
 @RequiredArgsConstructor
+@Repository
 class JpaApartmentRepository implements ApartmentRepository {
     private final SpringJpaApartmentRepository springJpaApartmentRepository;
 

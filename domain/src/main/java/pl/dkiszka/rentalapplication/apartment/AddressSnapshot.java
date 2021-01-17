@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder(access = AccessLevel.PACKAGE)
-@Getter(AccessLevel.PACKAGE)
+@Getter
 class AddressSnapshot {
     private String country;
     private String city;

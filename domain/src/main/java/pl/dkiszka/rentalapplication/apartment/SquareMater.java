@@ -1,16 +1,18 @@
 package pl.dkiszka.rentalapplication.apartment;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 /**
  * @author Dominik Kiszka {dominikk19}
  * @project rental-application
  * @date 22.12.2020
  */
-@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
-@Getter(value = AccessLevel.PACKAGE)
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@Getter
 class SquareMater {
-    private final Double size;
+    private Double size;
 }

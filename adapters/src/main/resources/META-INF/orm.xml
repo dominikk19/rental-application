@@ -40,12 +40,35 @@
             </basic>
             <embedded name="size"/>
         </attributes>
-
-
     </entity>
 
+    <entity class="pl.dkiszka.rentalapplication.apartment.BookingSnapshot" access="FIELD">
+        <table name="bookings"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="IDENTITY"/>
+            </id>
+            <basic name="uuid">
+                <column nullable="false"/>
+            </basic>
+            <basic name="apartmentId">
+                <column nullable="false"/>
+            </basic>
+            <basic name="tenantId">
+                <column nullable="false"/>
+            </basic>
+            <embedded name="period"/>
+        </attributes>
+    </entity>
 
-    <embeddable class="pl.dkiszka.rentalapplication.apartment.AddressSnapshot">
+    <embeddable class="pl.dkiszka.rentalapplication.apartment.PeriodSnapshot" access="FIELD">
+        <attributes>
+            <basic name="start"/>
+            <basic name="end"/>
+        </attributes>
+    </embeddable>
+
+    <embeddable class="pl.dkiszka.rentalapplication.apartment.AddressSnapshot" access="FIELD">
         <attributes>
             <basic name="country">
                 <column nullable="false"/>
@@ -68,7 +91,7 @@
         </attributes>
     </embeddable>
 
-    <embeddable class="pl.dkiszka.rentalapplication.apartment.SquareMater">
+    <embeddable class="pl.dkiszka.rentalapplication.apartment.SquareMater" access="FIELD">
         <attributes>
             <basic name="size">
                 <column nullable="false"/>

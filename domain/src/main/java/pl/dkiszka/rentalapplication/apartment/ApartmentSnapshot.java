@@ -14,7 +14,7 @@ import java.util.Set;
  * @date 07.01.2021
  */
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter(value = AccessLevel.PACKAGE)
+@Getter
 class ApartmentSnapshot {
     private String id;
     private String ownerId;
