@@ -17,7 +17,7 @@ class BookingCommandHandler {
 
 
     @EventListener
-    void reject(BookingReject bookingReject) {
+    public void reject(BookingReject bookingReject) {
         var booking = bookingRepository.findById(bookingReject.getBookingId());
         booking.ifPresent(it -> {
             var bookingRejected = it.reject();
@@ -28,7 +28,7 @@ class BookingCommandHandler {
     }
 
     @EventListener
-    void accept(BookingAccept bookingAccept) {
+    public void accept(BookingAccept bookingAccept) {
         var booking = bookingRepository.findById(bookingAccept.getBookingId());
         booking.ifPresent(it -> {
             var bookingAccepted = it.accept();
