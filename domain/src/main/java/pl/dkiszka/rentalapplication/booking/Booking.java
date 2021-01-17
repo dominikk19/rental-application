@@ -1,8 +1,7 @@
 package pl.dkiszka.rentalapplication.booking;
 
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
+import pl.dkiszka.rentalapplication.booking.vo.BookingAcceptedEvent;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,7 +14,6 @@ import static java.util.stream.Collectors.toList;
  * @project rental-application
  * @date 13.01.2021
  */
-@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 class Booking {
 
     static Booking restore(BookingSnapshot snapshot) {
@@ -24,7 +22,9 @@ class Booking {
                 snapshot.getRentalType(),
                 snapshot.getRentalPlaceId(),
                 snapshot.getTenantId(),
-                snapshot.getDays().stream().map(BookingDay::restore).collect(toList()));
+                snapshot.getDays().stream().map(BookingDay::restore).collect(toList()),
+                snapshot.getBookingStatus()
+        );
     }
 
     static Booking apartment(String apartmentId, String tenantId, List<LocalDate> days) {
@@ -33,7 +33,9 @@ class Booking {
                 RentalType.APARTMENT,
                 apartmentId,
                 tenantId,
-                days.stream().map(it -> BookingDay.restore(BookingDaySnapshot.create(it))).collect(toList()));
+                days.stream().map(it -> BookingDay.restore(BookingDaySnapshot.create(it))).collect(toList()),
+                BookingStatus.OPEN
+        );
     }
 
     static Booking hotelRoom(String hotelRoomId, String tenantId, List<LocalDate> days) {
@@ -42,7 +44,9 @@ class Booking {
                 RentalType.HOTEL_ROOM,
                 hotelRoomId,
                 tenantId,
-                days.stream().map(it -> BookingDay.restore(BookingDaySnapshot.create(it))).collect(toList()));
+                days.stream().map(it -> BookingDay.restore(BookingDaySnapshot.create(it))).collect(toList()),
+                BookingStatus.OPEN
+        );
     }
 
     private final String id;
@@ -51,7 +55,18 @@ class Booking {
     private final String rentalPlaceId;
     private final String tenantId;
     private final List<BookingDay> days;
+    private BookingStatus bookingStatus;
 
+    public Booking(String id, String uuid, RentalType rentalType, String rentalPlaceId, String tenantId,
+                   List<BookingDay> days, BookingStatus bookingStatus) {
+        this.id = id;
+        this.uuid = uuid;
+        this.rentalType = rentalType;
+        this.rentalPlaceId = rentalPlaceId;
+        this.tenantId = tenantId;
+        this.days = days;
+        this.bookingStatus = bookingStatus;
+    }
 
     BookingSnapshot getSnapshot() {
         return new BookingSnapshot(id,
@@ -61,8 +76,21 @@ class Booking {
                 tenantId,
                 days.stream()
                         .map(BookingDay::getSnapshot)
-                        .collect(toList()));
+                        .collect(toList()),
+                bookingStatus);
     }
 
 
+    Booking reject() {
+        bookingStatus = BookingStatus.REJECT;
+        return this;
+    }
+
+    BookingAcceptedEvent accept() {
+        bookingStatus = BookingStatus.ACCEPT;
+        var bookingDays = days.stream().map(BookingDay::getSnapshot)
+                .map(BookingDaySnapshot::getDay)
+                .collect(toList());
+        return BookingAcceptedEvent.create(rentalType.name(), rentalPlaceId, tenantId, bookingDays);
+    }
 }

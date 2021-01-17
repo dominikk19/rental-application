@@ -20,4 +20,5 @@ class BookingSnapshot {
     private RentalType rentalType;
     private String tenantId;
     private final List<BookingDaySnapshot> days;
+    private BookingStatus bookingStatus;
 }

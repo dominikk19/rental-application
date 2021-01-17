@@ -74,12 +74,16 @@
             <basic name="tenantId">
                 <column nullable="false"/>
             </basic>
+            <basic name="bookingStatus">
+                <enumerated>STRING</enumerated>
+            </basic>
             <one-to-many name="days">
                 <join-column name="project_id"/>
                 <cascade>
                     <cascade-all/>
                 </cascade>
             </one-to-many>
+
         </attributes>
     </entity>
 
