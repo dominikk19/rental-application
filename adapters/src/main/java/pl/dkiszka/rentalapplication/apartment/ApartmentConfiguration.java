@@ -2,6 +2,7 @@ package pl.dkiszka.rentalapplication.apartment;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import pl.dkiszka.rentalapplication.booking.BookingFacade;
 import pl.dkiszka.rentalapplication.eventchanel.DomainEventPublisher;
 
 /**
@@ -14,9 +15,9 @@ class ApartmentConfiguration {
 
     @Bean
     ApartmentApplicationService apartmentApplicationService(JpaApartmentRepository jpaApartmentRepository,
-                                                            JpaBookingRepository jpaBookingRepository,
+                                                            BookingFacade bookingFacade,
                                                             DomainEventPublisher publisher) {
-        return new ApartmentApplicationService(jpaApartmentRepository, jpaBookingRepository, publisher);
+        return new ApartmentApplicationService(jpaApartmentRepository, bookingFacade, publisher);
     }
 
 }

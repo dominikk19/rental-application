@@ -21,7 +21,7 @@ import javax.persistence.Id;
 @Getter
 class SqlSpace {
 
-    static SqlSpace fromSpace(Space space) {
+    static SqlSpace fromSpace(SpaceSnapshot space) {
         return new SqlSpace(space.getId(), space.getName(), JpaSquareMater.fromSquareMater(space.getSquareMater()));
 
     }
@@ -35,6 +35,6 @@ class SqlSpace {
     private JpaSquareMater squareMater;
 
     Space toSpace() {
-        return new Space(id, name, new SquareMater(squareMater.getSize()));
+        return Space.restore(new SpaceSnapshot(id, name, new SquareMaterSnapshot(squareMater.getSize())));
     }
 }

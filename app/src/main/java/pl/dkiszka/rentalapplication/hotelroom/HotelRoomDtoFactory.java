@@ -13,18 +13,19 @@ import static java.util.stream.Collectors.toList;
 class HotelRoomDtoFactory {
 
     static HotelRoomDto fromHotelRoom(HotelRoom hotelRoom) {
-        var speces = hotelRoom.getSpaces()
+        var hotelRoomSnapshot = hotelRoom.getSnapshot();
+        var speces = hotelRoomSnapshot.getSpaces()
                 .stream()
                 .map(HotelRoomDtoFactory::fromSpec)
                 .collect(toList());
-        return new HotelRoomDto(hotelRoom.getId(),
-                hotelRoom.getHotelId(),
-                hotelRoom.getNumber(),
+        return new HotelRoomDto(hotelRoomSnapshot.getId(),
+                hotelRoomSnapshot.getHotelId(),
+                hotelRoomSnapshot.getNumber(),
                 speces,
-                hotelRoom.getDescription());
+                hotelRoomSnapshot.getDescription());
     }
 
-    private static SpaceDto fromSpec(Space space) {
+    private static SpaceDto fromSpec(SpaceSnapshot space) {
         return new SpaceDto(space.getId(), space.getName(), space.getSquareMater().getSize());
     }
 }

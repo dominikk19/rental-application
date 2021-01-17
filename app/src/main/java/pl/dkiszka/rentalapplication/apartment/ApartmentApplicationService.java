@@ -3,6 +3,7 @@ package pl.dkiszka.rentalapplication.apartment;
 import lombok.RequiredArgsConstructor;
 import pl.dkiszka.rentalapplication.apartment.dto.ApartmentBookingDto;
 import pl.dkiszka.rentalapplication.apartment.dto.ApartmentDto;
+import pl.dkiszka.rentalapplication.booking.BookingFacade;
 import pl.dkiszka.rentalapplication.eventchanel.DomainEventPublisher;
 
 /**
@@ -14,7 +15,7 @@ import pl.dkiszka.rentalapplication.eventchanel.DomainEventPublisher;
 class ApartmentApplicationService {
 
     private final ApartmentRepository apartmentRepository;
-    private final BookingRepository bookingRepository;
+    private final BookingFacade bookingFacade;
     private final DomainEventPublisher domainEventPublisher;
 
     ApartmentDto add(ApartmentDto apartmentDto) {
@@ -25,9 +26,14 @@ class ApartmentApplicationService {
 
     void book(String id, ApartmentBookingDto apartmentBookingDto) {
         var apartment = apartmentRepository.findById(id);
+        var period = new Period(apartmentBookingDto.getStart(), apartmentBookingDto.getEnd());
         apartment.ifPresent(it -> {
-            var booking = it.book(apartmentBookingDto.getTenantId(), new Period(apartmentBookingDto.getStart(), apartmentBookingDto.getEnd()));
-            domainEventPublisher.publish(it.bookedEvent(bookingRepository.save(booking)));
+            var apartmentSnapshot = it.getSnapshot();
+            var booking = bookingFacade.bookApartment(apartmentSnapshot.getId(),
+                    apartmentBookingDto.getTenantId(),
+                    period.asDays());
+            apartmentRepository.save(it.addBooking(booking));
+            domainEventPublisher.publish(it.bookedEvent(apartmentBookingDto.getTenantId(), period));
         });
 
     }

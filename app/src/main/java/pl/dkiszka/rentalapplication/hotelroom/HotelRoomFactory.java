@@ -1,5 +1,6 @@
 package pl.dkiszka.rentalapplication.hotelroom;
 
+import com.google.common.collect.Lists;
 import pl.dkiszka.rentalapplication.hotelroom.dto.HotelRoomDto;
 
 import static java.util.stream.Collectors.toList;
@@ -14,8 +15,8 @@ class HotelRoomFactory {
         var speces = hotelRoom.getSpaces()
                 .stream()
                 .map(spec -> {
-                    var sq = new SquareMater(spec.getSize());
-                    return new Space(spec.getId(), spec.getName(), sq);
+                    var sq = new SquareMaterSnapshot(spec.getSize());
+                    return Space.restore(new SpaceSnapshot(spec.getId(), spec.getName(), sq));
                 })
                 .collect(toList());
 
@@ -23,6 +24,7 @@ class HotelRoomFactory {
                 hotelRoom.getHotelId(),
                 hotelRoom.getNumber(),
                 speces,
-                hotelRoom.getDescription());
+                hotelRoom.getDescription(),
+                Lists.newArrayList());
     }
 }

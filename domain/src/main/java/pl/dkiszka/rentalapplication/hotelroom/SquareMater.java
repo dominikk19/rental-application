@@ -1,7 +1,6 @@
 package pl.dkiszka.rentalapplication.hotelroom;
 
 import lombok.AccessLevel;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -9,9 +8,18 @@ import lombok.RequiredArgsConstructor;
  * @project rental-application
  * @date 26.12.2020
  */
-@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
-@Getter(AccessLevel.PACKAGE)
+@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 class SquareMater {
+
+    static SquareMater restore(SquareMaterSnapshot squareMaterSnapshot) {
+        return new SquareMater(squareMaterSnapshot.getSize());
+
+    }
+
     private final Double size;
+
+    SquareMaterSnapshot getSnapShot() {
+        return new SquareMaterSnapshot(size);
+    }
 
 }

@@ -24,13 +24,26 @@
                     <cascade-all/>
                 </cascade>
             </one-to-many>
+            <one-to-many name="bookings" fetch="EAGER">
+                <join-column name="rentalPlaceId"/>
+                <cascade>
+                    <cascade-all/>
+                </cascade>
+            </one-to-many>
             <embedded name="address"/>
+        </attributes>
+    </entity>
+
+    <entity class="pl.dkiszka.rentalapplication.booking.vo.SimpleBooking" access="FIELD">
+        <table name="bookings"/>
+        <attributes>
+            <id name="id"/>
         </attributes>
     </entity>
 
 
     <entity class="pl.dkiszka.rentalapplication.apartment.RoomSnapshot" access="FIELD">
-        <table name="rooms"/>
+        <table name="apartments_rooms"/>
         <attributes>
             <id name="id">
                 <generated-value strategy="IDENTITY"/>
@@ -42,7 +55,7 @@
         </attributes>
     </entity>
 
-    <entity class="pl.dkiszka.rentalapplication.apartment.BookingSnapshot" access="FIELD">
+    <entity class="pl.dkiszka.rentalapplication.booking.BookingSnapshot" access="FIELD">
         <table name="bookings"/>
         <attributes>
             <id name="id">
@@ -51,13 +64,32 @@
             <basic name="uuid">
                 <column nullable="false"/>
             </basic>
-            <basic name="apartmentId">
+            <basic name="rentalType">
+                <column nullable="false"/>
+                <enumerated>STRING</enumerated>
+            </basic>
+            <basic name="rentalPlaceId">
                 <column nullable="false"/>
             </basic>
             <basic name="tenantId">
                 <column nullable="false"/>
             </basic>
-            <embedded name="period"/>
+            <one-to-many name="days">
+                <join-column name="project_id"/>
+                <cascade>
+                    <cascade-all/>
+                </cascade>
+            </one-to-many>
+        </attributes>
+    </entity>
+
+    <entity class="pl.dkiszka.rentalapplication.booking.BookingDaySnapshot" access="FIELD">
+        <table name="booking_days"/>
+        <attributes>
+            <id name="id">
+                <generated-value strategy="IDENTITY"/>
+            </id>
+            <basic name="day"/>
         </attributes>
     </entity>
 

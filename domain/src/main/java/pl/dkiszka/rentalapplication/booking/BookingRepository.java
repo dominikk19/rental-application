@@ -1,4 +1,4 @@
-package pl.dkiszka.rentalapplication.apartment;
+package pl.dkiszka.rentalapplication.booking;
 
 /**
  * @author Dominik Kiszka {dominikk19}

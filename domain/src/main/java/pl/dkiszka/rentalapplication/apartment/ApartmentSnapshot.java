@@ -4,6 +4,7 @@ import com.google.common.collect.Sets;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import pl.dkiszka.rentalapplication.booking.vo.SimpleBooking;
 
 import java.util.List;
 import java.util.Set;
@@ -21,13 +22,16 @@ class ApartmentSnapshot {
     private AddressSnapshot address;
     private final Set<RoomSnapshot> rooms = Sets.newHashSet();
     private String description;
+    private final Set<SimpleBooking> bookings = Sets.newHashSet();
 
-    ApartmentSnapshot(String id, String ownerId, AddressSnapshot address, final List<RoomSnapshot> rooms, String description) {
+    ApartmentSnapshot(String id, String ownerId, AddressSnapshot address, final List<RoomSnapshot> rooms, String description,
+                      List<SimpleBooking> bookings) {
         this.id = id;
         this.ownerId = ownerId;
         this.description = description;
         this.rooms.addAll(rooms);
         this.address = address;
+        this.bookings.addAll(bookings);
     }
 
 }

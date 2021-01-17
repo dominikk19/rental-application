@@ -1,4 +1,4 @@
-package pl.dkiszka.rentalapplication.apartment;
+package pl.dkiszka.rentalapplication.hotelroom;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -7,14 +7,12 @@ import lombok.Getter;
 /**
  * @author Dominik Kiszka {dominikk19}
  * @project rental-application
- * @date 13.01.2021
+ * @date 17.01.2021
  */
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
-@Getter
-class BookingSnapshot {
+@Getter(value = AccessLevel.PACKAGE)
+class SpaceSnapshot {
     private String id;
-    private String uuid;
-    private String apartmentId;
-    private String tenantId;
-    private PeriodSnapshot period;
+    private String name;
+    private SquareMaterSnapshot squareMater;
 }

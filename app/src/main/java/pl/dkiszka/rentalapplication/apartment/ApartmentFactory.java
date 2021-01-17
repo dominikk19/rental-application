@@ -1,6 +1,7 @@
 package pl.dkiszka.rentalapplication.apartment;
 
 
+import com.google.common.collect.Lists;
 import pl.dkiszka.rentalapplication.apartment.dto.AddressDto;
 import pl.dkiszka.rentalapplication.apartment.dto.ApartmentDto;
 import pl.dkiszka.rentalapplication.apartment.dto.RoomDto;
@@ -19,7 +20,13 @@ class ApartmentFactory {
     Apartment fromDtoTo(ApartmentDto apartmentDto) {
         var address = extractAddressFromDto(apartmentDto.getAddress());
         var rooms = extractRoomsFromDto(apartmentDto.getRooms());
-        return Apartment.restore(new ApartmentSnapshot(apartmentDto.getId(), apartmentDto.getOwnerId(), address, rooms, apartmentDto.getDescription()));
+        return Apartment.restore(new ApartmentSnapshot(apartmentDto.getId(),
+                apartmentDto.getOwnerId(),
+                address,
+                rooms,
+                apartmentDto.getDescription(),
+                Lists.newArrayList()
+        ));
     }
 
     private AddressSnapshot extractAddressFromDto(AddressDto addressDto) {

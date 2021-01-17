@@ -1,9 +1,11 @@
 package pl.dkiszka.rentalapplication.apartment;
 
+import com.google.common.collect.Lists;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * @author Dominik Kiszka {dominikk19}
@@ -21,5 +23,9 @@ class Period {
 
     PeriodSnapshot getSnapshot() {
         return new PeriodSnapshot(start, end);
+    }
+
+    public List<LocalDate> asDays() {
+        return Lists.newArrayList();
     }
 }

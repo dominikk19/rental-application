@@ -18,7 +18,7 @@ import javax.persistence.Embeddable;
 @Getter
 class JpaSquareMater {
 
-    static JpaSquareMater fromSquareMater(SquareMater squareMater) {
+    static JpaSquareMater fromSquareMater(SquareMaterSnapshot squareMater) {
         return new JpaSquareMater(squareMater.getSize());
     }
 
