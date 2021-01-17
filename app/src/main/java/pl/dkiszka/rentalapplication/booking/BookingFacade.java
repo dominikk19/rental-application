@@ -14,17 +14,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookingFacade {
 
-
     private final BookingRepository bookingRepository;
 
     public SimpleBooking bookApartment(String apartmentId, String tenantId, List<LocalDate> days) {
         var booking = Booking.apartment(apartmentId, tenantId, days);
-        var savedBooking = bookingRepository.save(booking);
-        return new SimpleBooking(savedBooking.getSnapshot().getId());
+        return saveBooking(booking);
     }
 
     public SimpleBooking bookHotelRoom(String hotelRoomId, String tenantId, List<LocalDate> days) {
         var booking = Booking.hotelRoom(hotelRoomId, tenantId, days);
+        return saveBooking(booking);
+    }
+
+    private SimpleBooking saveBooking(Booking booking) {
         var savedBooking = bookingRepository.save(booking);
         return new SimpleBooking(savedBooking.getSnapshot().getId());
     }
