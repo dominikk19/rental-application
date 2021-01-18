@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.io.Serializable;
+
 /**
  * @author Dominik Kiszka {dominikk19}
  * @project rental-application
@@ -12,7 +14,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 @Builder
-public class AddressDto {
+public class AddressDto implements Serializable {
 
     private String country;
     private String city;

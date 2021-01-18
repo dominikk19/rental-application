@@ -51,7 +51,7 @@
             <basic name="name">
                 <column nullable="false"/>
             </basic>
-            <embedded name="size"/>
+            <basic name="size"/>
         </attributes>
     </entity>
 
