@@ -12,9 +12,12 @@ import java.util.Optional;
  * @date 11.01.2021
  */
 interface SpringJpaApartmentBookingHistoryRepository extends Repository<SqlApartmentBookingHistory, String> {
-    Optional<SqlApartmentBookingHistory> findByUuid(String uuid);
+    Optional<SqlApartmentBookingHistory> findByApartmentUuid(String apartmentUuid);
 
     SqlApartmentBookingHistory save(SqlApartmentBookingHistory sqlApartmentBookingHistory);
+}
+
+interface SpringJpaApartmentBookingHistoryQueryRepository extends ApartmentBookingHistoryQueryRepository, Repository<SqlApartmentBookingHistory, String>{
 }
 
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
@@ -25,7 +28,7 @@ class JpaApartmentBookingHistoryRepository implements ApartmentBookingHistoryRep
 
     @Override
     public Optional<ApartmentBookingHistory> findByApartmentUuid(String apartmentUuid) {
-        return springJpaApartmentBookingHistoryRepository.findByUuid(apartmentUuid)
+        return springJpaApartmentBookingHistoryRepository.findByApartmentUuid(apartmentUuid)
                 .map(SqlApartmentBookingHistory::toApartmentBookingHistory);
     }
 

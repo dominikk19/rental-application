@@ -41,14 +41,14 @@ class SqlApartmentBookingHistory {
     @GeneratedValue
     private String id;
 
-    private String uuid;
+    private String apartmentUuid;
 
     @OneToMany
     private final Set<SqlApartmentBooking> bookings = Sets.newHashSet();
 
     SqlApartmentBookingHistory(String id, String uuid, Set<SqlApartmentBooking> bookings) {
         this.id = id;
-        this.uuid = uuid;
+        this.apartmentUuid = uuid;
         this.bookings.addAll(bookings);
     }
 
@@ -57,7 +57,7 @@ class SqlApartmentBookingHistory {
                 .map(SqlApartmentBooking::toApartmentBooking)
                 .collect(toList());
         return ApartmentBookingHistory.restore(
-                new ApartmentBookingHistorySnapshot(id, uuid, apartmentBookings));
+                new ApartmentBookingHistorySnapshot(id, apartmentUuid, apartmentBookings));
     }
 
     @Entity
