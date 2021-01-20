@@ -17,16 +17,16 @@ import java.util.Set;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 class ApartmentSnapshot {
-    private String id;
+    private String uuid;
     private String ownerId;
     private AddressSnapshot address;
     private final Set<RoomSnapshot> rooms = Sets.newHashSet();
     private String description;
     private final Set<SimpleBooking> bookings = Sets.newHashSet();
 
-    ApartmentSnapshot(String id, String ownerId, AddressSnapshot address, final List<RoomSnapshot> rooms, String description,
+    ApartmentSnapshot(String uuid, String ownerId, AddressSnapshot address, final List<RoomSnapshot> rooms, String description,
                       List<SimpleBooking> bookings) {
-        this.id = id;
+        this.uuid = uuid;
         this.ownerId = ownerId;
         this.description = description;
         this.rooms.addAll(rooms);

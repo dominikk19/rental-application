@@ -21,7 +21,7 @@ class ApartmentDtoFactory {
                 .collect(toList());
         var address = fromAddress(apartmentSnapshot.getAddress());
 
-        return new ApartmentDto(apartmentSnapshot.getId(), apartmentSnapshot.getOwnerId(), address, romms, apartmentSnapshot.getDescription());
+        return new ApartmentDto(apartmentSnapshot.getUuid(), apartmentSnapshot.getOwnerId(), address, romms, apartmentSnapshot.getDescription());
 
     }
 

@@ -29,7 +29,7 @@ class ApartmentApplicationService {
         var period = new Period(apartmentBookingDto.getStart(), apartmentBookingDto.getEnd());
         apartment.ifPresent(it -> {
             var apartmentSnapshot = it.getSnapshot();
-            var booking = bookingFacade.bookApartment(apartmentSnapshot.getId(),
+            var booking = bookingFacade.bookApartment(apartmentSnapshot.getUuid(),
                     apartmentBookingDto.getTenantId(),
                     period.asDays());
             apartmentRepository.save(it.addBooking(booking));
