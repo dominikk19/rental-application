@@ -26,6 +26,8 @@ class Period {
     }
 
     public List<LocalDate> asDays() {
-        return start.datesUntil(end).collect(Collectors.toList());
+        var days = start.datesUntil(end).collect(Collectors.toList());
+        days.add(end);
+        return days;
     }
 }

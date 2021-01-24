@@ -44,6 +44,7 @@ class ApartmentTest {
 
         assertThat(event.getTenantId()).isEqualTo(tenantId);
         assertThat(event.getApartmentUuid()).isEqualTo(apartmentUuid);
+        assertThat(event.getApartmentUuid()).isEqualTo(apartmentUuid);
 
     }
 }
