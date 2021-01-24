@@ -24,6 +24,7 @@
         <assertj-core.version>3.18.1</assertj-core.version>
         <junit-platform-commons.version>1.7.0</junit-platform-commons.version>
         <junit-jupiter-params.version>5.7.0</junit-jupiter-params.version>
+        <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -81,8 +82,39 @@
             <version>${assertj-core.version}</version>
             <scope>test</scope>
         </dependency>
-
-
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>runtime-analysis</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>${jacoco-maven-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>prepare-agent</id>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>report</id>
+                                <goals>
+                                    <goal>report</goal>
+                                </goals>
+                                <phase>test</phase>
+                                <configuration>
+                                    <outputDirectory>${project.build.directory}/jacoco/jacoco-out</outputDirectory>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
