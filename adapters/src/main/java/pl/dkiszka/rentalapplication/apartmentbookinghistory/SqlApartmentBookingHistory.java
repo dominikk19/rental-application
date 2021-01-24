@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
@@ -71,6 +72,7 @@ class SqlApartmentBookingHistory {
         private String id;
 
         private String uuid;
+        private LocalDateTime bookingDataTime;
         private BookingStep bookingStep;
         private String ownerId;
         private String tenantId;
@@ -80,6 +82,7 @@ class SqlApartmentBookingHistory {
         static SqlApartmentBooking from(ApartmentBookingSnapshot snapshot) {
             return new SqlApartmentBooking(snapshot.getId(),
                     snapshot.getUuid(),
+                    snapshot.getBookingDataTime(),
                     snapshot.getBookingStep(),
                     snapshot.getOwnerId(),
                     snapshot.getTenantId(),
@@ -89,7 +92,7 @@ class SqlApartmentBookingHistory {
 
 
         ApartmentBookingSnapshot toApartmentBooking() {
-            return new ApartmentBookingSnapshot(id, uuid, bookingStep, ownerId, tenantId, periodStart, periodEnd);
+            return new ApartmentBookingSnapshot(id, uuid, bookingDataTime, bookingStep, ownerId, tenantId, periodStart, periodEnd);
         }
     }
 }

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * @author Dominik Kiszka {dominikk19}
@@ -17,6 +18,7 @@ class ApartmentBookingSnapshot {
 
     private String id;
     private String uuid;
+    private LocalDateTime bookingDataTime;
     private BookingStep bookingStep;
     private String ownerId;
     private String tenantId;

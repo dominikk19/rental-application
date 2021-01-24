@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
@@ -19,6 +20,7 @@ class ApartmentBooking {
         return new ApartmentBooking(
                 apartmentBookingSnapshot.getId(),
                 apartmentBookingSnapshot.getUuid(),
+                apartmentBookingSnapshot.getBookingDataTime(),
                 apartmentBookingSnapshot.getBookingStep(),
                 apartmentBookingSnapshot.getOwnerId(),
                 apartmentBookingSnapshot.getTenantId(),
@@ -26,12 +28,13 @@ class ApartmentBooking {
                 apartmentBookingSnapshot.getPeriodEnd());
     }
 
-    static ApartmentBooking start(String ownerId, String tenantId, LocalDate periodStart, LocalDate periodEnd) {
-        return new ApartmentBooking(Strings.EMPTY, UUID.randomUUID().toString(), BookingStep.START, ownerId, tenantId, periodStart, periodEnd);
+    static ApartmentBooking start(LocalDateTime bookingDataTime, String ownerId, String tenantId, LocalDate periodStart, LocalDate periodEnd) {
+        return new ApartmentBooking(Strings.EMPTY, UUID.randomUUID().toString(), bookingDataTime, BookingStep.START, ownerId, tenantId, periodStart, periodEnd);
     }
 
     private final String id;
     private final String uuid;
+    private final LocalDateTime bookingDataTime;
     private final BookingStep bookingStep;
     private final String ownerId;
     private final String tenantId;
@@ -39,6 +42,6 @@ class ApartmentBooking {
     private final LocalDate periodEnd;
 
     ApartmentBookingSnapshot getSnapshot() {
-        return new ApartmentBookingSnapshot(id, uuid, bookingStep, ownerId, tenantId, periodStart, periodEnd);
+        return new ApartmentBookingSnapshot(id, uuid, bookingDataTime, bookingStep, ownerId, tenantId, periodStart, periodEnd);
     }
 }

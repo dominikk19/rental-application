@@ -28,7 +28,9 @@ public class ApartmentBookingHistoryFacade {
     }
 
     private void addApartmentBooking(ApartmentBookingHistory apartmentBookingHistory, ApartmentBookedEvent apartmentBookedEvent) {
-        apartmentBookingHistory.addBooking(ApartmentBooking.start(apartmentBookedEvent.getOwnerId(),
+        apartmentBookingHistory.addBooking(ApartmentBooking.start(
+                apartmentBookedEvent.getEventCreationDataTime(),
+                apartmentBookedEvent.getOwnerId(),
                 apartmentBookedEvent.getTenantId(),
                 apartmentBookedEvent.getStart(),
                 apartmentBookedEvent.getEnd()));

@@ -26,6 +26,7 @@ class ApartmentBookingHistory {
 
     static ApartmentBookingHistory start(ApartmentBookedEvent apartmentBookedEvent) {
         var bookings = ApartmentBooking.start(
+                apartmentBookedEvent.getEventCreationDataTime(),
                 apartmentBookedEvent.getOwnerId(),
                 apartmentBookedEvent.getTenantId(),
                 apartmentBookedEvent.getStart(),
