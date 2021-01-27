@@ -23,6 +23,7 @@
         <assertj-core.version>3.18.1</assertj-core.version>
         <guava.version>29.0-jre</guava.version>
         <junit-platform-commons.version>1.7.0</junit-platform-commons.version>
+        <mockito-junit-jupiter.version>3.6.0</mockito-junit-jupiter.version>
     </properties>
 
 
@@ -67,6 +68,12 @@
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-commons</artifactId>
             <version>${junit-platform-commons.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito-junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

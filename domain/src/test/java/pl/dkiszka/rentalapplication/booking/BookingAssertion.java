@@ -65,11 +65,8 @@ class BookingAssertion {
                                 });
                     }
             );
-
         });
-
         return this;
-
     }
 
 

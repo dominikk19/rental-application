@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 /**
  * @author Dominik Kiszka {dominikk19}
  * @project rental-application
@@ -16,11 +14,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ApartmentTest {
 
     @Test
-    void should_return_event_apartment_booking_for_apartment() {
+    void when_book_apartment_then_apartment_booked_event_should_be_returned() {
         var apartmentUuid = UUID.randomUUID().toString();
         var tenantId = UUID.randomUUID().toString();
-        var period = new Period(LocalDate.now().plusDays(10), LocalDate.now().plusDays(6));
+        var ownerId = "6789";
+        var startDate = LocalDate.now().plusDays(6);
+        var endDate = LocalDate.now().plusDays(10);
 
+        var apartment = createApartment(apartmentUuid, ownerId);
+
+        var apartmentBookedEvent = apartment.bookedEvent(tenantId, new Period(startDate, endDate));
+
+        ApartmentBookedEventAssertion.assertThat(apartmentBookedEvent)
+                .hasOwnerIdEqualsTo(ownerId)
+                .hasTenantIdEqualsTo(tenantId)
+                .hasPeriodContainsStartDay(startDate)
+                .hasPeriodContainsEndDay(endDate);
+    }
+
+    private Apartment createApartment(String apartmentUuid, String ownerId) {
         var addressSnapshot = AddressSnapshot.
                 builder()
                 .country("Poland")
@@ -30,21 +42,11 @@ class ApartmentTest {
                 .houseNumber("1")
                 .apartmentNumber("1")
                 .build();
-        var apartment = Apartment.restore(new ApartmentSnapshot(apartmentUuid, "222", addressSnapshot,
+        return Apartment.restore(new ApartmentSnapshot(apartmentUuid, ownerId, addressSnapshot,
                 Lists.newArrayList(new RoomSnapshot("", "salon", 35.00)),
                 "small apartment",
-                Lists.newArrayList())
-
-        );
-
-
-
-        var event = apartment.bookedEvent(tenantId, period);
-
-
-        assertThat(event.getTenantId()).isEqualTo(tenantId);
-        assertThat(event.getApartmentUuid()).isEqualTo(apartmentUuid);
-        assertThat(event.getApartmentUuid()).isEqualTo(apartmentUuid);
-
+                Lists.newArrayList()));
     }
+
+
 }
