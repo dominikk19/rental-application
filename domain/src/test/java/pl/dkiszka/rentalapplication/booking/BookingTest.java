@@ -1,9 +1,11 @@
 package pl.dkiszka.rentalapplication.booking;
 
 import com.google.common.collect.Lists;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * @author Dominik Kiszka {dominikk19}
@@ -12,46 +14,79 @@ import java.time.LocalDate;
  */
 class BookingTest {
 
-    @Test
-    void should_create_booking_for_apartment(){
-        var rentalPlaceId = "567";
-        var tenantId = "123567";
-        var days = Lists.newArrayList(LocalDate.of(2020,3,4),
-                LocalDate.of(2020,3,5),
-                LocalDate.of(2020,3,6));
+    private final String RENTAL_PLACE_ID = "567";
+    private final String TENANT_ID = "12344567";
 
-        var actualBooking= Booking.apartment(rentalPlaceId,tenantId,days);
+    @Test
+    void should_create_booking_for_apartment() {
+
+        var days = Lists.newArrayList(LocalDate.of(2020, 3, 4),
+                LocalDate.of(2020, 3, 5),
+                LocalDate.of(2020, 3, 6));
+
+        var actualBooking = prepareHotelBooking(days);
 
         BookingAssertion.assertThat(actualBooking)
                 .isOpen()
                 .isApartment()
-                .hasRentalPlaceIdEqualTo(rentalPlaceId)
-                .hasTenantIdEqualTo(tenantId)
-                .containsAllDays(LocalDate.of(2020,3,6),
-                        LocalDate.of(2020,3,5),
-                        LocalDate.of(2020,3,4));
+                .hasRentalPlaceIdEqualTo(RENTAL_PLACE_ID)
+                .hasTenantIdEqualTo(TENANT_ID)
+                .containsAllDays(LocalDate.of(2020, 3, 6),
+                        LocalDate.of(2020, 3, 5),
+                        LocalDate.of(2020, 3, 4));
     }
 
 
     @Test
-    void should_create_booking_for_hotel_room(){
-        var rentalPlaceId = "567";
-        var tenantId = "123567";
-        var days = Lists.newArrayList(LocalDate.of(2020,3,4),
-                LocalDate.of(2020,3,5),
-                LocalDate.of(2020,3,6));
+    void should_create_booking_for_hotel_room() {
 
-        var actualBooking = Booking.hotelRoom(rentalPlaceId,tenantId,days);
+        var days = Lists.newArrayList(LocalDate.of(2020, 3, 4),
+                LocalDate.of(2020, 3, 5),
+                LocalDate.of(2020, 3, 6));
+
+        var actualBooking = prepareHotelBooking(days);
 
         BookingAssertion.assertThat(actualBooking)
                 .isOpen()
                 .isHotelRoom()
-                .hasRentalPlaceIdEqualTo(rentalPlaceId)
-                .hasTenantIdEqualTo(tenantId)
-                .containsAllDays(LocalDate.of(2020,3,4),
-                        LocalDate.of(2020,3,5),
-                        LocalDate.of(2020,3,6));
+                .hasRentalPlaceIdEqualTo(RENTAL_PLACE_ID)
+                .hasTenantIdEqualTo(TENANT_ID)
+                .containsAllDays(LocalDate.of(2020, 3, 4),
+                        LocalDate.of(2020, 3, 5),
+                        LocalDate.of(2020, 3, 6));
 
     }
+
+    @Test
+    void when_accepted_booking_then_booking_accepted_event_should_be_created() {
+        var days = Lists.newArrayList(LocalDate.of(2020, 3, 4),
+                LocalDate.of(2020, 3, 5),
+                LocalDate.of(2020, 3, 6));
+
+        var actualBookingAcceptedEvent = prepareHotelBooking(days).accept();
+
+        Assertions.assertThat(actualBookingAcceptedEvent)
+                .hasFieldOrPropertyWithValue("rentalType", RentalType.HOTEL_ROOM)
+                .hasFieldOrPropertyWithValue("rentalPlaceId", RENTAL_PLACE_ID)
+                .hasFieldOrPropertyWithValue("tenantId", TENANT_ID);
+    }
+
+    @Test
+    void when_accepted_booking_then_status_should_be_accept() {
+        var days = Lists.newArrayList(LocalDate.of(2020, 3, 4),
+                LocalDate.of(2020, 3, 5),
+                LocalDate.of(2020, 3, 6));
+
+        var actualBooking = prepareHotelBooking(days);
+        actualBooking.accept();
+
+        BookingAssertion.assertThat(actualBooking)
+                .isAccept();
+    }
+
+    private Booking prepareHotelBooking(List<LocalDate> days) {
+        return Booking.hotelRoom(RENTAL_PLACE_ID, TENANT_ID, days);
+    }
+
 
 }
