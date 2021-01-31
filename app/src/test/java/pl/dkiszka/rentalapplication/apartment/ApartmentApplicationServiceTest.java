@@ -68,8 +68,8 @@ class ApartmentApplicationServiceTest {
                 .houseNumber("1")
                 .apartmentNumber("1")
                 .build();
-        return Apartment.restore(new ApartmentSnapshot(apartmentUuid, "999", addressSnapshot,
-                Lists.newArrayList(new RoomSnapshot("", "salon", 35.00)),
+        return Apartment.restore(new ApartmentSnapshot(null, apartmentUuid, "999", addressSnapshot,
+                Lists.newArrayList(new RoomSnapshot(null, UUID.randomUUID().toString(), "salon", 35.00)),
                 "small apartment",
                 Lists.newArrayList())
         );

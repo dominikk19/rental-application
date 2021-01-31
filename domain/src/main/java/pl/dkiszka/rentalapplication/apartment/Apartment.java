@@ -17,7 +17,8 @@ import static java.util.stream.Collectors.toList;
 class Apartment {
 
     static Apartment restore(ApartmentSnapshot apartmentSnapshot) {
-        return new Apartment(apartmentSnapshot.getUuid(),
+        return new Apartment(apartmentSnapshot.getId(),
+                apartmentSnapshot.getUuid(),
                 apartmentSnapshot.getOwnerId(),
                 Address.restore(apartmentSnapshot.getAddress()),
                 apartmentSnapshot.getRooms().stream().map(Room::restore).collect(toList()),
@@ -26,6 +27,7 @@ class Apartment {
         );
     }
 
+    private final String id;
     private final String uuid;
     private final String ownerId;
     private final Address address;
@@ -33,7 +35,8 @@ class Apartment {
     private final String description;
     private final List<SimpleBooking> bookings = Lists.newArrayList();
 
-    public Apartment(String uuid, String ownerId, Address address, List<Room> rooms, String description, List<SimpleBooking> bookings) {
+    private Apartment(String id, String uuid, String ownerId, Address address, List<Room> rooms, String description, List<SimpleBooking> bookings) {
+        this.id = id;
         this.uuid = uuid;
         this.ownerId = ownerId;
         this.address = address;
@@ -46,7 +49,7 @@ class Apartment {
         var roomsSnap = rooms.stream()
                 .map(Room::getSnapshot)
                 .collect(toList());
-        return new ApartmentSnapshot(uuid, ownerId, address.getSnapshot(), roomsSnap, description, bookings);
+        return new ApartmentSnapshot(id, uuid, ownerId, address.getSnapshot(), roomsSnap, description, bookings);
 
     }
 

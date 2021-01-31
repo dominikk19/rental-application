@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Getter
 class RoomSnapshot {
     private String id;
+    private String uuid;
     private String name;
     private Double size;
 }

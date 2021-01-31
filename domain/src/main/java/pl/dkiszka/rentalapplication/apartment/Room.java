@@ -12,14 +12,15 @@ import lombok.RequiredArgsConstructor;
 class Room {
 
     static Room restore(RoomSnapshot roomSnapshot) {
-        return new Room(roomSnapshot.getId(), roomSnapshot.getName(), new SquareMater(roomSnapshot.getSize()));
+        return new Room(roomSnapshot.getId(), roomSnapshot.getUuid(), roomSnapshot.getName(), new SquareMater(roomSnapshot.getSize()));
     }
 
     private final String id;
+    private final String uuid;
     private final String name;
     private final SquareMater size;
 
     RoomSnapshot getSnapshot() {
-        return new RoomSnapshot(id, name, size.getSize());
+        return new RoomSnapshot(id, uuid, name, size.getSize());
     }
 }

@@ -35,7 +35,7 @@ class ApartmentController {
     ResponseEntity<ApartmentDto> addApartment(@RequestBody ApartmentDto apartmentDto) {
         var apartment = apartmentApplicationService.add(apartmentDto);
         return ResponseEntity
-                .created(URI.create("/" + apartment.getId()))
+                .created(URI.create("/" + apartment.getUuid()))
                 .body(apartment);
     }
 

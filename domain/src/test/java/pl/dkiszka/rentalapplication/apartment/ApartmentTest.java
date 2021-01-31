@@ -42,8 +42,8 @@ class ApartmentTest {
                 .houseNumber("1")
                 .apartmentNumber("1")
                 .build();
-        return Apartment.restore(new ApartmentSnapshot(apartmentUuid, ownerId, addressSnapshot,
-                Lists.newArrayList(new RoomSnapshot("", "salon", 35.00)),
+        return Apartment.restore(new ApartmentSnapshot(null, apartmentUuid, ownerId, addressSnapshot,
+                Lists.newArrayList(new RoomSnapshot(null, UUID.randomUUID().toString(), "salon", 35.00)),
                 "small apartment",
                 Lists.newArrayList()));
     }

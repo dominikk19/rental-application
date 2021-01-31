@@ -20,7 +20,7 @@ class ApartmentFactory {
     Apartment fromDtoTo(ApartmentDto apartmentDto) {
         var address = extractAddressFromDto(apartmentDto.getAddress());
         var rooms = extractRoomsFromDto(apartmentDto.getRooms());
-        return Apartment.restore(new ApartmentSnapshot(apartmentDto.getId(),
+        return Apartment.restore(new ApartmentSnapshot(null, apartmentDto.getUuid(),
                 apartmentDto.getOwnerId(),
                 address,
                 rooms,
@@ -48,7 +48,7 @@ class ApartmentFactory {
     }
 
     private RoomSnapshot convertRoomFromDto(RoomDto room) {
-        return new RoomSnapshot(room.getId(), room.getName(), room.getSize());
+        return new RoomSnapshot(null, room.getUuid(), room.getName(), room.getSize());
     }
 
 }

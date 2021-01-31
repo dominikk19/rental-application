@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Getter
 public class ApartmentDto {
-    private final String id;
+    private final String uuid;
     private final String ownerId;
     private final AddressDto address;
     private final List<RoomDto> rooms;

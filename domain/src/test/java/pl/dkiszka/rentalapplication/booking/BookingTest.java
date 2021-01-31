@@ -24,7 +24,7 @@ class BookingTest {
                 LocalDate.of(2020, 3, 5),
                 LocalDate.of(2020, 3, 6));
 
-        var actualBooking = prepareHotelBooking(days);
+        var actualBooking = prepareApartmentBooking(days);
 
         BookingAssertion.assertThat(actualBooking)
                 .isOpen()
@@ -66,7 +66,7 @@ class BookingTest {
         var actualBookingAcceptedEvent = prepareHotelBooking(days).accept();
 
         Assertions.assertThat(actualBookingAcceptedEvent)
-                .hasFieldOrPropertyWithValue("rentalType", RentalType.HOTEL_ROOM)
+                .hasFieldOrPropertyWithValue("rentalType", RentalType.HOTEL_ROOM.name())
                 .hasFieldOrPropertyWithValue("rentalPlaceId", RENTAL_PLACE_ID)
                 .hasFieldOrPropertyWithValue("tenantId", TENANT_ID);
     }
@@ -86,6 +86,10 @@ class BookingTest {
 
     private Booking prepareHotelBooking(List<LocalDate> days) {
         return Booking.hotelRoom(RENTAL_PLACE_ID, TENANT_ID, days);
+    }
+
+    private Booking prepareApartmentBooking(List<LocalDate> days) {
+        return Booking.apartment(RENTAL_PLACE_ID, TENANT_ID, days);
     }
 
 

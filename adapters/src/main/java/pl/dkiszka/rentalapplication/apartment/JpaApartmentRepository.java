@@ -23,7 +23,8 @@ class JpaApartmentRepository implements ApartmentRepository {
 
     @Override
     public Optional<Apartment> findById(String id) {
-        return springJpaApartmentRepository.findById(id)
-                .map(Apartment::restore);
+        return Optional.of(springJpaApartmentRepository.findById(id)
+                .map(Apartment::restore)
+                .orElseThrow(()->new ApartmentNotFoundException(String.format("Apartment id %s not found", id))));
     }
 }

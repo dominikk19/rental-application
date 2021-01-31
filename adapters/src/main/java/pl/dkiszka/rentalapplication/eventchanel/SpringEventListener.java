@@ -2,6 +2,7 @@ package pl.dkiszka.rentalapplication.eventchanel;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.EventListener;
+import org.springframework.stereotype.Component;
 import pl.dkiszka.rentalapplication.apartment.vo.ApartmentBookedEvent;
 import pl.dkiszka.rentalapplication.apartmentbookinghistory.ApartmentBookingHistoryFacade;
 import pl.dkiszka.rentalapplication.hotelbookinghistory.HotelBookingHistoryFacade;
@@ -13,6 +14,7 @@ import pl.dkiszka.rentalapplication.hotelroom.vo.HotelRoomBookedEvent;
  * @date 09.01.2021
  */
 @RequiredArgsConstructor
+@Component
 class SpringEventListener {
     private final HotelBookingHistoryFacade hotelBookingHistoryFacade;
     private final ApartmentBookingHistoryFacade apartmentBookingHistoryFacade;
