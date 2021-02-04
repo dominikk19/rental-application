@@ -1,0 +1,13 @@
+language: java
+jdk:
+  - oraclejdk11
+
+matrix:
+  - jdk:  oraclejdk11
+    before_install:
+      - rm "${JAVA_HOME}/lib/security/cacerts"
+      - ln -s /etc/ssl/cert/java/cacers "${JAVA_HOME}/lib/security/cacerts"
+
+script:
+  - mvn clean test
+
