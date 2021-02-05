@@ -9,5 +9,6 @@ matrix:
       - ln -s /etc/ssl/cert/java/cacers "${JAVA_HOME}/lib/security/cacerts"
 
 script:
-  - mvn clean test
+  - mvn clean install
+  - mvn test
 
