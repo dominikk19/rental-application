@@ -10,5 +10,4 @@ matrix:
 
 script:
   - mvn clean install
-  - mvn test
 
