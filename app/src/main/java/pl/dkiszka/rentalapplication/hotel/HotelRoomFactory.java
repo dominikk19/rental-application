@@ -1,7 +1,7 @@
-package pl.dkiszka.rentalapplication.hotelroom;
+package pl.dkiszka.rentalapplication.hotel;
 
 import com.google.common.collect.Lists;
-import pl.dkiszka.rentalapplication.hotelroom.dto.HotelRoomDto;
+import pl.dkiszka.rentalapplication.hotel.dto.RoomDto;
 
 import static java.util.stream.Collectors.toList;
 
@@ -11,7 +11,7 @@ import static java.util.stream.Collectors.toList;
  * @date 26.12.2020
  */
 class HotelRoomFactory {
-    public HotelRoom create(HotelRoomDto hotelRoom) {
+    public Room create(RoomDto hotelRoom) {
         var speces = hotelRoom.getSpaces()
                 .stream()
                 .map(spec -> {
@@ -20,8 +20,7 @@ class HotelRoomFactory {
                 })
                 .collect(toList());
 
-        return new HotelRoom(hotelRoom.getId(),
-                hotelRoom.getHotelId(),
+        return new Room(hotelRoom.getId(),
                 hotelRoom.getNumber(),
                 speces,
                 hotelRoom.getDescription(),

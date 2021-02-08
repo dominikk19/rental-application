@@ -12,11 +12,12 @@ import pl.dkiszka.rentalapplication.hotel.dto.HotelDto;
 class HotelDtoFactory {
 
     static HotelDto fromHotel(Hotel hotel) {
-        var address = fromAddress(hotel.getAddress());
-        return new HotelDto(hotel.getId(), hotel.getName(), address);
+        var hotelSnapshot = hotel.toSnapshot();
+        var address = fromAddress(hotelSnapshot.getAddress());
+        return new HotelDto(hotelSnapshot.getId(), hotelSnapshot.getName(), address);
     }
 
-    private static AddressDto fromAddress(Address address){
+    private static AddressDto fromAddress(AddressSnapshot address) {
         return AddressDto.builder()
                 .country(address.getCountry())
                 .city(address.getCity())

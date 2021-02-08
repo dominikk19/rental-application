@@ -5,8 +5,8 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import pl.dkiszka.rentalapplication.apartment.vo.ApartmentBookedEvent;
 import pl.dkiszka.rentalapplication.apartmentbookinghistory.ApartmentBookingHistoryFacade;
+import pl.dkiszka.rentalapplication.hotel.vo.HotelRoomBookedEvent;
 import pl.dkiszka.rentalapplication.hotelbookinghistory.HotelBookingHistoryFacade;
-import pl.dkiszka.rentalapplication.hotelroom.vo.HotelRoomBookedEvent;
 
 /**
  * @author Dominik Kiszka {dominikk19}

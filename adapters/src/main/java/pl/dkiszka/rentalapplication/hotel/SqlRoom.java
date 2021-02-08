@@ -1,4 +1,4 @@
-package pl.dkiszka.rentalapplication.hotelroom;
+package pl.dkiszka.rentalapplication.hotel;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -24,16 +24,15 @@ import static java.util.stream.Collectors.toList;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-class SqlHotelRoom {
+class SqlRoom {
 
-    static SqlHotelRoom fromHotelRoom(HotelRoom hotelRoom) {
-        var hotelRoomSnapsot = hotelRoom.getSnapshot();
+    static SqlRoom fromHotelRoom(Room room) {
+        var hotelRoomSnapsot = room.toSnapshot();
         var sqlSpaces = hotelRoomSnapsot.getSpaces()
                 .stream()
                 .map(SqlSpace::fromSpace)
                 .collect(toList());
-        return new SqlHotelRoom(hotelRoomSnapsot.getId(),
-                hotelRoomSnapsot.getHotelId(),
+        return new SqlRoom(hotelRoomSnapsot.getId(),
                 hotelRoomSnapsot.getNumber(),
                 sqlSpaces,
                 hotelRoomSnapsot.getDescription(),
@@ -43,7 +42,6 @@ class SqlHotelRoom {
     @Id
     @GeneratedValue
     private String id;
-    private String hotelId;
     private int number;
 
     @OneToMany
@@ -52,29 +50,31 @@ class SqlHotelRoom {
     private String description;
 
     @OneToMany
-    private final Set<SimpleBooking> bookings = Sets.newHashSet();
+    private final Set<SqlSimpleBooking> bookings = Sets.newHashSet();
 
-    public SqlHotelRoom(String id, String hotelId, int number, List<SqlSpace> spaces, String description, List<SimpleBooking> bookings) {
+    public SqlRoom(String id, int number, List<SqlSpace> spaces, String description, List<SimpleBooking> bookings) {
         this.id = id;
-        this.hotelId = hotelId;
         this.number = number;
         this.spaces.addAll(spaces);
         this.description = description;
         bookings.stream()
-                .map(it -> new SimpleBooking(it.getId()))
+                .map(sm -> new SqlSimpleBooking(sm.getId()))
                 .forEach(this.bookings::add);
     }
 
-    HotelRoom toHotelRoom() {
+    RoomSnapshot toHotelRoom() {
         var hotelRoomSpeces = spaces.stream()
                 .map(SqlSpace::toSpace)
                 .collect(toList());
 
-        return new HotelRoom(id,
-                hotelId,
+        var bookingsSnapshot = bookings.stream()
+                .map(SqlSimpleBooking::toSimpleBooking)
+                .collect(toList());
+
+        return new RoomSnapshot(id,
                 number,
                 hotelRoomSpeces,
                 description,
-                Lists.newArrayList(bookings));
+                bookingsSnapshot);
     }
 }

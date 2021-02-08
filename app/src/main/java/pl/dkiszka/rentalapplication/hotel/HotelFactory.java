@@ -1,5 +1,6 @@
 package pl.dkiszka.rentalapplication.hotel;
 
+import org.assertj.core.util.Lists;
 import pl.dkiszka.rentalapplication.hotel.dto.AddressDto;
 import pl.dkiszka.rentalapplication.hotel.dto.HotelDto;
 
@@ -12,7 +13,7 @@ class HotelFactory {
 
     Hotel create(HotelDto hotelDto) {
         var address = extractAddressFromDto(hotelDto.getAddress());
-        return new Hotel(hotelDto.getId(), hotelDto.getName(), address);
+        return new Hotel(hotelDto.getId(), hotelDto.getName(), address, Lists.emptyList());
     }
 
     private Address extractAddressFromDto(AddressDto addressDto) {

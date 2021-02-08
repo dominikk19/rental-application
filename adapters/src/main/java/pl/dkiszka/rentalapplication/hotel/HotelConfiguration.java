@@ -3,6 +3,8 @@ package pl.dkiszka.rentalapplication.hotel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import pl.dkiszka.rentalapplication.booking.BookingFacade;
+import pl.dkiszka.rentalapplication.eventchanel.SpringDomainEventPublisher;
 
 /**
  * @author Dominik Kiszka {dominikk19}
@@ -14,7 +16,9 @@ import org.springframework.context.annotation.Configuration;
 class HotelConfiguration {
 
     @Bean
-    HotelApplicationService hotelApplicationService(JpaHotelRepository jpaHotelRepository) {
-        return new HotelApplicationService(jpaHotelRepository);
+    HotelApplicationService hotelApplicationService(JpaHotelRepository jpaHotelRepository,
+                                                    BookingFacade bookingFacade,
+                                                    SpringDomainEventPublisher publisher) {
+        return new HotelApplicationService(jpaHotelRepository, bookingFacade, publisher);
     }
 }

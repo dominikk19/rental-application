@@ -1,4 +1,4 @@
-package pl.dkiszka.rentalapplication.hotelroom.dto;
+package pl.dkiszka.rentalapplication.hotel.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,10 +12,9 @@ import java.util.List;
  */
 @AllArgsConstructor
 @Getter
-public class HotelRoomDto {
+public class RoomDto {
 
     private String id;
-    private String hotelId;
     private int number;
     private List<SpaceDto> spaces;
     private String description;

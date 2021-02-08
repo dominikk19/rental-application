@@ -1,4 +1,4 @@
-package pl.dkiszka.rentalapplication.hotelroom;
+package pl.dkiszka.rentalapplication.hotel;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -34,7 +34,7 @@ class SqlSpace {
     @Embedded
     private JpaSquareMater squareMater;
 
-    Space toSpace() {
-        return Space.restore(new SpaceSnapshot(id, name, new SquareMaterSnapshot(squareMater.getSize())));
+    SpaceSnapshot toSpace() {
+        return new SpaceSnapshot(id, name, new SquareMaterSnapshot(squareMater.getSize()));
     }
 }

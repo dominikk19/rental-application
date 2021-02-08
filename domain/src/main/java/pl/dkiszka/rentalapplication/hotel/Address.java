@@ -13,10 +13,26 @@ import lombok.RequiredArgsConstructor;
 @Getter
 class Address {
 
+    static Address restore(AddressSnapshot address) {
+        return new Address(address.getCountry(),
+                address.getCity(),
+                address.getStreet(),
+                address.getPostalCode(),
+                address.getBuildingNumber());
+    }
+
     private final String country;
     private final String city;
     private final String street;
     private final String postalCode;
     private final String buildingNumber;
 
+
+    AddressSnapshot toSnapshot() {
+        return new AddressSnapshot(country,
+                city,
+                street,
+                postalCode,
+                buildingNumber);
+    }
 }

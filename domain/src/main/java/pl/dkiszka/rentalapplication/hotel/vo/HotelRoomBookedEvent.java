@@ -1,4 +1,4 @@
-package pl.dkiszka.rentalapplication.hotelroom.vo;
+package pl.dkiszka.rentalapplication.hotel.vo;
 
 import lombok.AccessLevel;
 import lombok.Getter;

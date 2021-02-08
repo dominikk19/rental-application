@@ -1,4 +1,4 @@
-package pl.dkiszka.rentalapplication.hotelroom;
+package pl.dkiszka.rentalapplication.hotel;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.dkiszka.rentalapplication.hotelroom.dto.HotelRoomBookingDto;
-import pl.dkiszka.rentalapplication.hotelroom.dto.HotelRoomDto;
+import pl.dkiszka.rentalapplication.hotel.dto.HotelRoomBookingDto;
+import pl.dkiszka.rentalapplication.hotel.dto.RoomDto;
 
 import java.net.URI;
 
@@ -23,14 +23,14 @@ import java.net.URI;
 
 @RestController
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
-@RequestMapping("/api/v1/hotel-room")
+@RequestMapping("/api/v1/hotel")
 class HotelRoomController {
 
-    private final HotelRoomApplicationService hotelRoomApplicationService;
+    private final HotelApplicationService hotelApplicationService;
 
-    @PostMapping
-    public ResponseEntity<HotelRoomDto> addApartment(@RequestBody HotelRoomDto hotelRoomDto) {
-        var hotelRoom = hotelRoomApplicationService.add(hotelRoomDto);
+    @PostMapping(path = "/{hotelId}/room")
+    public ResponseEntity<RoomDto> addApartment(@PathVariable String hotelId, @RequestBody RoomDto roomDto) {
+        var hotelRoom = hotelApplicationService.add(hotelId, roomDto);
         return ResponseEntity
                 .created(URI.create("/" + hotelRoom.getId()))
                 .body(hotelRoom);
@@ -38,7 +38,7 @@ class HotelRoomController {
 
     @PutMapping("/book/{id}")
     public void book(@PathVariable String id, @RequestBody HotelRoomBookingDto hotelRoomBookingDto){
-        hotelRoomApplicationService.book(id, hotelRoomBookingDto);
+        hotelApplicationService.book(id, hotelRoomBookingDto);
 
     }
 

@@ -7,7 +7,7 @@ import pl.dkiszka.rentalapplication.hotelbookinghistory.vo.HotelBookingHistorySn
 import pl.dkiszka.rentalapplication.hotelbookinghistory.vo.HotelRoomBookingDaySnapshot;
 import pl.dkiszka.rentalapplication.hotelbookinghistory.vo.HotelRoomBookingHistorySnapshot;
 import pl.dkiszka.rentalapplication.hotelbookinghistory.vo.HotelRoomBookingSnapshot;
-import pl.dkiszka.rentalapplication.hotelroom.vo.HotelRoomBookedEvent;
+import pl.dkiszka.rentalapplication.hotel.vo.HotelRoomBookedEvent;
 
 import java.util.Optional;
 import java.util.stream.Collectors;

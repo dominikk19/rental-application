@@ -1,4 +1,4 @@
-package pl.dkiszka.rentalapplication.hotelroom.dto;
+package pl.dkiszka.rentalapplication.hotel.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

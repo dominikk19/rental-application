@@ -20,7 +20,7 @@ import javax.persistence.Embeddable;
 @Getter
 class SqlAddress {
 
-    static SqlAddress fromAddress(Address address) {
+    static SqlAddress fromAddress(AddressSnapshot address) {
         return new SqlAddress(
                 address.getCountry(),
                 address.getCity(),
@@ -35,7 +35,7 @@ class SqlAddress {
     private String postalCode;
     private String buildingNumber;
 
-    Address toAddress() {
-        return new Address(country, city, street, postalCode, buildingNumber);
+    AddressSnapshot toAddress() {
+        return new AddressSnapshot(country, city, street, postalCode, buildingNumber);
     }
 }

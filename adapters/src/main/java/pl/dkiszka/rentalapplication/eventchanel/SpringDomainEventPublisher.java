@@ -5,7 +5,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 import pl.dkiszka.rentalapplication.apartment.vo.ApartmentBookedEvent;
 import pl.dkiszka.rentalapplication.booking.vo.BookingAcceptedEvent;
-import pl.dkiszka.rentalapplication.hotelroom.vo.HotelRoomBookedEvent;
+import pl.dkiszka.rentalapplication.hotel.vo.HotelRoomBookedEvent;
 
 /**
  * @author Dominik Kiszka {dominikk19}

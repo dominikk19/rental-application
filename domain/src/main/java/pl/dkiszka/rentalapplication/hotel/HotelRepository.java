@@ -7,4 +7,6 @@ package pl.dkiszka.rentalapplication.hotel;
  */
 interface HotelRepository {
     Hotel save(Hotel hotel);
+
+    Hotel findById(String hotelId);
 }
